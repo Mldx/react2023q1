@@ -4,15 +4,17 @@ import './App.scss';
 
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import AboutPage from './components/AboutPage/AboutPage';
-import Header from './components/Header/Header';
+import Layout from './components/Layout/Layout';
 
 function App() {
   return (
     <>
-      <Header></Header>
       <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<h1>HeyBro!</h1>}></Route>
+          <Route path="/about" element={<AboutPage />}></Route>
+        </Route>
         <Route path="*" element={<ErrorPage />}></Route>
-        <Route path="/about" element={<AboutPage />}></Route>
       </Routes>
     </>
   );
