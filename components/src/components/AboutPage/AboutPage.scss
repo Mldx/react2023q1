@@ -1,0 +1,29 @@
+.about-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .about-container {
+    display: flex;
+    flex-direction: column;
+
+    & * {
+      margin: 0;
+    }
+
+    .about-container__title {
+      font-size: 12rem;
+      line-height: 14rem;
+    }
+
+    .about-container__description {
+      font-size: 2rem;
+      line-height: 2rem;
+      text-align: start;
+
+      p {
+        margin-top: 2rem;
+      }
+    }
+  }
+}

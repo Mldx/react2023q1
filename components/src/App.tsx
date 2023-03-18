@@ -1,10 +1,17 @@
 import React from 'react';
-
+import { Route, Routes } from 'react-router-dom';
 import './App.scss';
+
 import ErrorPage from './components/ErrorPage/ErrorPage';
+import AboutPage from './components/AboutPage/AboutPage';
 
 function App() {
-  return <ErrorPage></ErrorPage>;
+  return (
+    <Routes>
+      <Route path="/" element={<ErrorPage />}></Route>
+      <Route path="/about" element={<AboutPage />}></Route>
+    </Routes>
+  );
 }
 
 export default App;
