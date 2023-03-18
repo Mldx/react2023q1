@@ -18,24 +18,22 @@ class Navigate extends React.Component<object, { isChangedPage: boolean }> {
 
   render() {
     return (
-      <header className={'header'}>
-        <nav className="navigate-container">
-          <Link
-            className={`navigate-link ${this.toggleActivePageClass('')}`}
-            to="/"
-            onClick={this.handleClick}
-          >
-            Home
-          </Link>
-          <Link
-            className={`navigate-link ${this.toggleActivePageClass('about')}`}
-            to="/about"
-            onClick={this.handleClick}
-          >
-            About
-          </Link>
-        </nav>
-      </header>
+      <nav className="navigate-container">
+        <Link
+          className={`navigate-link ${this.toggleActivePageClass('')}`}
+          to="/"
+          onClick={this.handleClick}
+        >
+          Home
+        </Link>
+        <Link
+          className={`navigate-link ${this.toggleActivePageClass('about')}`}
+          to="/about"
+          onClick={this.handleClick}
+        >
+          About
+        </Link>
+      </nav>
     );
   }
 }
