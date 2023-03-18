@@ -5,14 +5,14 @@ import './App.scss';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import AboutPage from './components/AboutPage/AboutPage';
 import Layout from './components/Layout/Layout';
-import SearchBar from './components/SearchBar/SearchBar';
+import Card from './components/Card/Card';
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<SearchBar />}></Route>
+          <Route index element={<Card />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
         </Route>
         <Route path="*" element={<ErrorPage />}></Route>
