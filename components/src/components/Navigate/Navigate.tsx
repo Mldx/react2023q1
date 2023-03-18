@@ -31,7 +31,7 @@ class Navigate extends React.Component<object, { isChangedPage: boolean }> {
           to="/about"
           onClick={this.handleClick}
         >
-          About
+          About us
         </Link>
       </nav>
     );
