@@ -5,13 +5,14 @@ import './App.scss';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import AboutPage from './components/AboutPage/AboutPage';
 import Layout from './components/Layout/Layout';
+import SearchBar from './components/SearchBar/SearchBar';
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<h1>HeyBro!</h1>}></Route>
+          <Route index element={<SearchBar />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
         </Route>
         <Route path="*" element={<ErrorPage />}></Route>
