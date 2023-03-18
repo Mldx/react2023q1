@@ -4,13 +4,17 @@ import './App.scss';
 
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import AboutPage from './components/AboutPage/AboutPage';
+import Header from './components/Header/Header';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<ErrorPage />}></Route>
-      <Route path="/about" element={<AboutPage />}></Route>
-    </Routes>
+    <>
+      <Header></Header>
+      <Routes>
+        <Route path="*" element={<ErrorPage />}></Route>
+        <Route path="/about" element={<AboutPage />}></Route>
+      </Routes>
+    </>
   );
 }
 
