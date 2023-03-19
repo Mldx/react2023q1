@@ -7,11 +7,6 @@ class SearchBar extends React.Component<object, { value: string }> {
     this.state = { value: localStorage.getItem('searchBarValue') || '' };
   }
 
-  componentDidMount() {
-    const valueLS = localStorage.getItem('searchBarValue');
-    this.setState({ value: valueLS || '' });
-  }
-
   componentWillUnmount() {
     localStorage.setItem('searchBarValue', this.state.value || '');
   }
