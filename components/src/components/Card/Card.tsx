@@ -1,31 +1,10 @@
 import React from 'react';
 import './Card.scss';
 import AddButton from './AddButton/AddButton';
+import { IMobileInfo } from '../../types/types';
 
-class Card extends React.Component<{
-  data: {
-    id: string;
-    model: string;
-    color: string;
-    ram: string;
-    screen: string;
-    cameras: string;
-    price: string;
-    image: string;
-  };
-}> {
-  constructor(props: {
-    data: {
-      id: string;
-      model: string;
-      color: string;
-      ram: string;
-      screen: string;
-      cameras: string;
-      price: string;
-      image: string;
-    };
-  }) {
+class Card extends React.Component<{ data: IMobileInfo }> {
+  constructor(props: { data: IMobileInfo }) {
     super(props);
   }
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import './AddButton.scss';
+import { IAddButtonState } from '../../../types/types';
 
-class AddButton extends React.Component<object, { isAdded: boolean; text: string }> {
-  constructor(props: { isChanged: boolean; text: string }) {
+class AddButton extends React.Component<object, IAddButtonState> {
+  constructor(props: object) {
     super(props);
     this.state = { isAdded: false, text: 'Add to cart' };
   }
