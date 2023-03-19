@@ -1,0 +1,25 @@
+.cart__add-button {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 2rem;
+  height: 4rem;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  color: #EAEAEAFF;
+  border: none;
+  background: transparent;
+  transition: background .1s linear;
+
+  &.added {
+    &:hover{
+      background: #539494;
+    }
+    background: #539494;
+  }
+
+  &:hover {
+    background: darken(#3b3b3b,10%);
+  }
+}
+

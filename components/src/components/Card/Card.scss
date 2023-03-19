@@ -4,7 +4,7 @@
   flex-direction: column;
   box-sizing: border-box;
   width: 280px;
-  border: 1px solid #ffffff;
+  border: 1px solid #c7c2c2;
   border-radius: 15px;
   background: #3b3b3b;
 
@@ -17,12 +17,8 @@
       font-size: 1.6rem;
       display: flex;
       width: 100%;
-      margin-top: 10px;
+      margin-top: 1rem;
       border-bottom: 1px #539494 solid;
-
-      &:last-child {
-        border-bottom: none;
-      }
 
       .properties-name {
         font-weight: 700;

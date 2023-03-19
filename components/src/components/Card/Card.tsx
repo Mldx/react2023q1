@@ -1,5 +1,6 @@
 import React from 'react';
 import './Card.scss';
+import AddButton from './AddButton/AddButton';
 
 class Card extends React.Component<{
   data: {
@@ -59,6 +60,7 @@ class Card extends React.Component<{
             <span className="properties-name">Price:</span>
             <span className="properties-value">{this.props.data.price} $</span>
           </div>
+          <AddButton />
         </div>
       </div>
     );
