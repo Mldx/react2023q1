@@ -1,4 +1,4 @@
-.card-container {
+.card {
   display: flex;
   overflow: hidden;
   flex-direction: column;
@@ -10,7 +10,7 @@
   background: #3b3b3b;
 
 
-  .card-container__properties {
+  .card__properties {
     display: flex;
     flex-direction: column;
 
@@ -34,7 +34,7 @@
     }
   }
 
-  .image-container {
+  .card__image-box {
     font-size: 0;
     width: 100%;
 

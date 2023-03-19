@@ -30,11 +30,11 @@ class Card extends React.Component<{
 
   render() {
     return (
-      <div className="card-container">
-        <div className="image-container">
+      <div className="card">
+        <div className="card__image-box">
           <img src={this.props.data.image} alt="mobile image" />
         </div>
-        <div className="card-container__properties">
+        <div className="card__properties">
           <div>
             <span className="properties-name">Model:</span>
             <span className="properties-value">{this.props.data.model}</span>
