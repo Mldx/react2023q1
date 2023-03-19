@@ -103,7 +103,7 @@ const mobileData = [
   {
     id: '10',
     model: 'Oppo Find X3 Neo',
-    color: 'grey',
+    color: 'black',
     ram: '12',
     screen: '6.55',
     cameras: '3',
