@@ -52,12 +52,12 @@ const mobileData = [
   },
   {
     id: '5',
-    model: 'Iphone XR',
-    color: 'yellow',
-    ram: '3',
-    screen: '6.1',
-    cameras: '1',
-    price: '540',
+    model: 'Xiaomi Redmi Note 11',
+    color: 'blue',
+    ram: '4',
+    screen: '6.43',
+    cameras: '4',
+    price: '400',
     image: image5,
   },
   {
