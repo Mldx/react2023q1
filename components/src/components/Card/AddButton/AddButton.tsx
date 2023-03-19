@@ -12,7 +12,6 @@ class AddButton extends React.Component<object, { isAdded: boolean; text: string
     const text = this.state.text === 'Add to cart' ? 'Added' : 'Add to cart';
 
     this.setState({ isAdded: !isAdded, text: text });
-    console.log(isAdded);
   };
 
   addActiveClass = (isAdded: boolean) => {
