@@ -1,14 +1,3 @@
-import image1 from '../assets/1.webp';
-import image2 from '../assets/2.webp';
-import image3 from '../assets/3.webp';
-import image4 from '../assets/4.webp';
-import image5 from '../assets/5.webp';
-import image6 from '../assets/6.webp';
-import image7 from '../assets/7.webp';
-import image8 from '../assets/8.webp';
-import image9 from '../assets/9.webp';
-import image10 from '../assets/10.webp';
-
 const mobileData = [
   {
     id: '1',
@@ -18,7 +7,7 @@ const mobileData = [
     screen: '6.7',
     cameras: '3',
     price: '1200',
-    image: image1,
+    image: '/1.webp',
   },
   {
     id: '2',
@@ -28,7 +17,7 @@ const mobileData = [
     screen: '6.1',
     cameras: '3',
     price: '800',
-    image: image2,
+    image: '/2.webp',
   },
   {
     id: '3',
@@ -38,7 +27,7 @@ const mobileData = [
     screen: '6.2',
     cameras: '3',
     price: '920',
-    image: image3,
+    image: '/3.webp',
   },
   {
     id: '4',
@@ -48,7 +37,7 @@ const mobileData = [
     screen: '6.67',
     cameras: '4',
     price: '420',
-    image: image4,
+    image: '/4.webp',
   },
   {
     id: '5',
@@ -58,7 +47,7 @@ const mobileData = [
     screen: '6.43',
     cameras: '4',
     price: '400',
-    image: image5,
+    image: '/5.webp',
   },
   {
     id: '6',
@@ -68,7 +57,7 @@ const mobileData = [
     screen: '6.1',
     cameras: '3',
     price: '800',
-    image: image6,
+    image: '/6.webp',
   },
   {
     id: '7',
@@ -78,7 +67,7 @@ const mobileData = [
     screen: '6.4',
     cameras: '4',
     price: '350',
-    image: image7,
+    image: '/7.webp',
   },
   {
     id: '8',
@@ -88,7 +77,7 @@ const mobileData = [
     screen: '6.7',
     cameras: '2',
     price: '740',
-    image: image8,
+    image: '/8.webp',
   },
   {
     id: '9',
@@ -98,7 +87,7 @@ const mobileData = [
     screen: '6.49',
     cameras: '3',
     price: '650',
-    image: image9,
+    image: '/9.webp',
   },
   {
     id: '10',
@@ -108,7 +97,7 @@ const mobileData = [
     screen: '6.55',
     cameras: '3',
     price: '700',
-    image: image10,
+    image: '/10.webp',
   },
 ];
 
