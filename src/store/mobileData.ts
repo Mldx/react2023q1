@@ -7,7 +7,7 @@ const mobileData = [
     screen: '6.7',
     cameras: '3',
     price: '1200',
-    image: '/1.webp',
+    image: 'images/1.webp',
   },
   {
     id: '2',
@@ -17,7 +17,7 @@ const mobileData = [
     screen: '6.1',
     cameras: '3',
     price: '800',
-    image: '/2.webp',
+    image: 'images/2.webp',
   },
   {
     id: '3',
@@ -27,7 +27,7 @@ const mobileData = [
     screen: '6.2',
     cameras: '3',
     price: '920',
-    image: '/3.webp',
+    image: 'images/3.webp',
   },
   {
     id: '4',
@@ -37,7 +37,7 @@ const mobileData = [
     screen: '6.67',
     cameras: '4',
     price: '420',
-    image: '/4.webp',
+    image: 'images/4.webp',
   },
   {
     id: '5',
@@ -47,7 +47,7 @@ const mobileData = [
     screen: '6.43',
     cameras: '4',
     price: '400',
-    image: '/5.webp',
+    image: 'images/5.webp',
   },
   {
     id: '6',
@@ -57,7 +57,7 @@ const mobileData = [
     screen: '6.1',
     cameras: '3',
     price: '800',
-    image: '/6.webp',
+    image: 'images/6.webp',
   },
   {
     id: '7',
@@ -67,7 +67,7 @@ const mobileData = [
     screen: '6.4',
     cameras: '4',
     price: '350',
-    image: '/7.webp',
+    image: 'images/7.webp',
   },
   {
     id: '8',
@@ -77,7 +77,7 @@ const mobileData = [
     screen: '6.7',
     cameras: '2',
     price: '740',
-    image: '/8.webp',
+    image: 'images/8.webp',
   },
   {
     id: '9',
@@ -87,7 +87,7 @@ const mobileData = [
     screen: '6.49',
     cameras: '3',
     price: '650',
-    image: '/9.webp',
+    image: 'images/9.webp',
   },
   {
     id: '10',
@@ -97,7 +97,7 @@ const mobileData = [
     screen: '6.55',
     cameras: '3',
     price: '700',
-    image: '/10.webp',
+    image: 'images/10.webp',
   },
 ];
 
