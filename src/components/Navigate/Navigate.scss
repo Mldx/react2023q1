@@ -4,25 +4,3 @@
   justify-content: center;
   column-gap: 20px;
 }
-
-.navigate-link {
-  display: flex;
-  padding: 0.5rem 1.5rem;
-  transition: color .15s linear;
-
-
-  &:hover {
-    color: #539494;
-
-  }
-  &:hover.activePage {
-    color: white;
-    transition:unset;
-  }
-}
-
-.activePage {
-  color: #ffffff;
-  border-radius: 1rem;
-  background: #539494;
-}
