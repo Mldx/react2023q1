@@ -1,0 +1,29 @@
+.error-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+
+  .error-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1280px;
+    padding: 2rem;
+
+    & * {
+      margin: 0;
+    }
+
+    .error-container__title {
+      font-size: 12rem;
+      line-height: 14rem;
+    }
+
+    .error-container__404 {
+      font-size: 7rem;
+    }
+    .error-container__description {
+      font-size: 2rem;
+    }
+  }
+}

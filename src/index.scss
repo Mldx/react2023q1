@@ -1,0 +1,28 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.5;
+
+  color: #EAEAEAFF;
+  background-color: #242424;
+}
+
+#root {
+  flex-direction: column;
+  display: flex;
+  max-width: 1280px;
+}
+
+body {
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+a {
+  font-weight: 500;
+  text-decoration: inherit;
+  color: #eeeeee;
+}

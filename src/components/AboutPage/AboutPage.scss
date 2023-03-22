@@ -1,0 +1,32 @@
+.about-page {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+
+  .about-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1280px;
+    padding: 2rem;
+
+    & * {
+      margin: 0;
+    }
+
+    .about-container__title {
+      font-size: 12rem;
+      line-height: 14rem;
+    }
+
+    .about-container__description {
+      font-size: 1.6rem;
+      line-height: 1.6rem;
+      text-align: start;
+
+      p {
+        margin-top: 2rem;
+      }
+    }
+  }
+}

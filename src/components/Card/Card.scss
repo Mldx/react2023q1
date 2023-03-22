@@ -1,0 +1,43 @@
+.card {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 280px;
+  border: 1px solid #c7c2c2;
+  border-radius: 15px;
+  background: #3b3b3b;
+
+
+  .card__properties {
+    display: flex;
+    flex-direction: column;
+
+    div {
+      font-size: 1.6rem;
+      display: flex;
+      width: 100%;
+      margin-top: 1rem;
+      border-bottom: 1px #539494 solid;
+
+      .properties-name {
+        font-weight: 700;
+        width: 35%;
+        padding-left: 10px;
+        text-align: left;
+      }
+    }
+  }
+
+  .card__image-box {
+    font-size: 0;
+    width: 100%;
+    min-height: 370px;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+
