@@ -5,7 +5,27 @@ class FormPage extends React.Component {
   render() {
     return (
       <div className="forms-page">
-        <h1>Form page</h1>
+        <form className="ordering-form">
+          <h1 className="ordering-title">Ordering form</h1>
+          <input type="text" />
+
+          <input type="date" />
+
+          <select>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+
+          <input type="checkbox" />
+
+          <input type="radio" name="test" />
+          <input type="radio" name="test" />
+
+          <input type="file" />
+
+          <button type="submit">Submit</button>
+        </form>
       </div>
     );
   }
