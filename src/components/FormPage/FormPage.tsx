@@ -1,6 +1,5 @@
 import React from 'react';
 import './FormPage.scss';
-import SearchBar from '../SearchBar/SearchBar';
 
 class FormPage extends React.Component {
   render() {
