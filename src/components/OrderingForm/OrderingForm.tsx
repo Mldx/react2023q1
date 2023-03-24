@@ -2,7 +2,7 @@ import React from 'react';
 import './OrderingForm.scss';
 import { IOrderingFormErrors, IOrderingFormData, IOrderingFormState } from '../../types/types';
 import ValidationErrorMessage from './ValidationErrorMessage/ValidationErrorMessage';
-import validate from '../../utils/validate';
+import validate from '../../utils/validator';
 import OrderCardContainer from './OrderCardContainer/OrderCardContainer';
 
 class OrderingForm extends React.Component<object, IOrderingFormState> {
