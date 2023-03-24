@@ -39,7 +39,6 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
     errors.personalData = validate.personalData(dataFromForm.personalData);
     errors.gender = validate.gender(dataFromForm.gender);
     errors.avatar = validate.avatar(dataFromForm.avatar);
-    console.log(dataFromForm.gender);
 
     this.setState({ formErrors: errors });
     return !Object.values(errors).some((err) => err.length > 0);
