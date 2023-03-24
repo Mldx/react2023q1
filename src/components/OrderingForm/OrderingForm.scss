@@ -24,6 +24,10 @@
       width: max-content;
     }
 
+    &.input-avatar-box {
+      width: max-content;
+    }
+
     input[type='text'] {
       font-size: 2rem;
       box-sizing: border-box;
@@ -82,11 +86,24 @@
 
     input[type='checkbox'] {
       box-sizing: border-box;
-
       width: 15px;
       height: 15px;
       margin: 0 10px 0 0;
       cursor: pointer;
+    }
+
+    input[type='file'] {
+      cursor: pointer;
+
+      &::file-selector-button {
+        cursor: pointer;
+        border: 0;
+        background: #539494;
+        color: #eaeaea;
+        width: max-content;
+        height: 35px;
+        border-radius: 5px;
+      }
     }
 
   }
@@ -101,15 +118,17 @@
     width: 450px;
 
 
+
     .radio-options-box {
       display: flex;
       flex-direction: row;
       column-gap: 20px;
+
       input {
-        margin: 0 10px 0 0;
-        cursor: pointer;
         width: 15px;
         height: 15px;
+        margin: 0 10px 0 0;
+        cursor: pointer;
       }
 
       label {
@@ -117,16 +136,6 @@
         flex-direction: row;
       }
     }
-  }
-
-  .validation-error {
-    font-size: 2rem;
-    line-height: 2rem;
-    position: absolute;
-    bottom: -2rem;
-    margin: 0;
-    color: crimson;
-    cursor: pointer;
   }
 }
 
