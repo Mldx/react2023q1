@@ -1,12 +1,15 @@
 import React from 'react';
 import './OrderingForm.scss';
-import { IOrderingFormErrors, IOrderingFormState } from '../../types/types';
+import { IOrderingFormErrors, IOrderingFormOrder, IOrderingFormState } from '../../types/types';
+import ValidationErrorMessage from './ValidationErrorMessage/ValidationErrorMessage';
+import validate from '../../utils/validate';
 
 class OrderingForm extends React.Component<object, IOrderingFormState> {
   constructor(props: object) {
     super(props);
     this.state = {
-      errors: {},
+      formErrors: {},
+      orderList: [],
     };
   }
 
@@ -37,58 +40,17 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
       ];
 
     const errors: IOrderingFormErrors = {};
-    let formIsValid = true;
-    const currentDate = new Date();
 
-    if (!inputName) {
-      formIsValid = false;
-      errors['name'] = 'Please enter your name';
-    }
-    if (inputName && !/[A-Z]/.test(inputName[0])) {
-      formIsValid = false;
-      errors['name'] = 'Please enter your name with capital letters';
-    }
-    if (!inputSurName) {
-      formIsValid = false;
-      errors['surName'] = 'Please enter your surname';
-    }
-    if (inputSurName && !/[A-Z]/.test(inputSurName[0])) {
-      formIsValid = false;
-      errors['surName'] = 'Please enter your surname with capital letters';
-    }
-    if (!dateDelivery) {
-      formIsValid = false;
-      errors['dateDelivery'] = 'Please choose the delivery date';
-    }
-    if (
-      dateDelivery &&
-      (new Date(dateDelivery) <= currentDate || new Date(dateDelivery).getFullYear() > 2030)
-    ) {
-      formIsValid = false;
-      errors['dateDelivery'] = 'Please choose the correct date';
-    }
-    if (!cityDelivery) {
-      formIsValid = false;
-      errors['cityDelivery'] = 'Please choose your city for delivery';
-    }
-    if (!personalData) {
-      formIsValid = false;
-      errors['personalData'] = 'Please check the box';
-    }
-    if (!genderList.some((opinion) => opinion.current?.checked)) {
-      formIsValid = false;
-      errors['gender'] = 'Please choose the gender';
-    }
-    if (avatar && avatar.length === 0) {
-      formIsValid = false;
-      errors['avatar'] = 'Please add your avatar';
-    }
-    if (avatar && avatar[0] && !avatar[0]?.type.includes('image')) {
-      formIsValid = false;
-      errors['avatar'] = 'Please add image file';
-    }
-    this.setState({ errors });
-    return formIsValid;
+    errors.name = validate.name(inputName);
+    errors.surName = validate.surName(inputSurName);
+    errors.dateDelivery = validate.dateDelivery(dateDelivery);
+    errors.cityDelivery = validate.cityDelivery(cityDelivery);
+    errors.personalData = validate.personalData(personalData);
+    errors.gender = validate.genderList(genderList);
+    errors.avatar = validate.avatar(avatar);
+
+    this.setState({ formErrors: errors });
+    return !Object.values(errors).some((err) => err.length > 0);
   };
   handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -97,77 +59,78 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
       setTimeout(() => this.refList.form.current?.reset(), 0);
     }
   };
+
   render() {
+    const DELIVERY_CITIES = ['', 'Ankara', 'Minsk', 'Tbilisi', 'Vilnius', 'Warsaw'];
+    const GENDERS = ['male', 'female'];
     return (
-      <>
-        <div>
-          <form
-            className="ordering-form"
-            onSubmit={this.handleSubmit}
-            ref={this.refList.form}
-            noValidate={true}
-          >
-            <label>
-              Name:
-              <input type="text" ref={this.refList.inputName} autoComplete="new-password" />
-              <span className="validation-error">{this.state.errors['name']}</span>
-            </label>
+      <div>
+        <form
+          className="ordering-form"
+          onSubmit={this.handleSubmit}
+          ref={this.refList.form}
+          noValidate={true}
+        >
+          <label>
+            Name:
+            <input type="text" ref={this.refList.inputName} autoComplete="new-password" />
+            <ValidationErrorMessage errorMessage={this.state.formErrors.name} />
+          </label>
 
-            <label>
-              Surname:
-              <input type="text" ref={this.refList.inputSurName} autoComplete="new-password" />
-              <span className="validation-error">{this.state.errors['surName']}</span>
-            </label>
+          <label>
+            Surname:
+            <input type="text" ref={this.refList.inputSurName} autoComplete="new-password" />
+            <ValidationErrorMessage errorMessage={this.state.formErrors.surName} />
+          </label>
 
-            <label>
-              Delivery date:
-              <input type="date" ref={this.refList.inputDateDelivery} />
-              <span className="validation-error">{this.state.errors['dateDelivery']}</span>
-            </label>
+          <label>
+            Delivery date:
+            <input type="date" ref={this.refList.inputDateDelivery} />
+            <ValidationErrorMessage errorMessage={this.state.formErrors.dateDelivery} />
+          </label>
 
-            <label>
-              Delivery city:
-              <select ref={this.refList.selectCityDelivery}>
-                <option></option>
-                <option>Baranovichi</option>
-                <option>Minsk</option>
-                <option>Grodno</option>
-                <option>Brest</option>
-              </select>
-              <span className="validation-error">{this.state.errors['cityDelivery']}</span>
-            </label>
+          <label>
+            Delivery city:
+            <select ref={this.refList.selectCityDelivery}>
+              {DELIVERY_CITIES.map((city) => (
+                <option key={city}>{city}</option>
+              ))}
+            </select>
+            <ValidationErrorMessage errorMessage={this.state.formErrors.cityDelivery} />
+          </label>
 
-            <label className="personal-data-box">
-              <input type="checkbox" ref={this.refList.inputPersonalData} />I allow to use my
-              personal data:
-              <span className="validation-error">{this.state.errors['personalData']}</span>
-            </label>
+          <label className="personal-data-box">
+            <input type="checkbox" ref={this.refList.inputPersonalData} />I allow to use my personal
+            data:
+            <ValidationErrorMessage errorMessage={this.state.formErrors.personalData} />
+          </label>
 
-            <div className="gender-box">
-              Gender:
-              <div className="radio-options-box">
-                <label>
-                  <input type="radio" ref={this.refList.inputRadioGenderList[0]} name="gender" />
-                  male
+          <div className="gender-box">
+            Gender:
+            <div className="radio-options-box">
+              {GENDERS.map((gender, index) => (
+                <label key={gender}>
+                  <input
+                    type="radio"
+                    ref={this.refList.inputRadioGenderList[index]}
+                    name="gender"
+                  />
+                  {gender}
                 </label>
-                <label>
-                  <input type="radio" ref={this.refList.inputRadioGenderList[1]} name="gender" />
-                  female
-                </label>
-                <span className="validation-error">{this.state.errors['gender']}</span>
-              </div>
+              ))}
+              <ValidationErrorMessage errorMessage={this.state.formErrors.gender} />
             </div>
+          </div>
 
-            <label>
-              Your avatar:
-              <input type="file" ref={this.refList.inputAvatar} accept="image/*" />
-              <span className="validation-error">{this.state.errors['avatar']}</span>
-            </label>
-            <br />
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-      </>
+          <label className="input-avatar-box">
+            Your avatar:
+            <input type="file" ref={this.refList.inputAvatar} accept="image/*" />
+            <ValidationErrorMessage errorMessage={this.state.formErrors.avatar} />
+          </label>
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     );
   }
 }
