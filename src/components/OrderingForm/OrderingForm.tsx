@@ -3,6 +3,7 @@ import './OrderingForm.scss';
 import { IOrderingFormErrors, IOrderingFormData, IOrderingFormState } from '../../types/types';
 import ValidationErrorMessage from './ValidationErrorMessage/ValidationErrorMessage';
 import validate from '../../utils/validate';
+import OrderCardContainer from './OrderCardContainer/OrderCardContainer';
 
 class OrderingForm extends React.Component<object, IOrderingFormState> {
   constructor(props: object) {
@@ -43,14 +44,16 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
     this.setState({ formErrors: errors });
     return !Object.values(errors).some((err) => err.length > 0);
   };
+
   handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (this.formIsValid()) {
       this.setState({ orderList: [...this.state.orderList, this.getDataFromForm()] });
-      setTimeout(() => alert('Done'), 0);
-      setTimeout(() => this.refList.form.current?.reset(), 0);
+      alert('Done');
+      this.refList.form.current?.reset();
     }
   };
+
   private getDataFromForm = (): IOrderingFormData => {
     return {
       name: this.refList.inputName.current?.value,
@@ -134,6 +137,7 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
           <br />
           <button type="submit">Submit</button>
         </form>
+        <OrderCardContainer dataList={this.state.orderList} />
       </div>
     );
   }
