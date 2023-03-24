@@ -1,20 +1,20 @@
 import React from 'react';
-import './Card.scss';
+import './ProductCard.scss';
 import AddButton from './AddButton/AddButton';
 import { IMobileInfo } from '../../types/types';
 
-class Card extends React.Component<{ data: IMobileInfo }> {
+class ProductCard extends React.Component<{ data: IMobileInfo }> {
   constructor(props: { data: IMobileInfo }) {
     super(props);
   }
 
   render() {
     return (
-      <div className="card">
-        <div className="card__image-box">
+      <div className="product-card">
+        <div className="product-card__image-box">
           <img src={this.props.data.image} alt="mobile image" />
         </div>
-        <div className="card__properties">
+        <div className="product-card__properties">
           <div>
             <span className="properties-name">Model:</span>
             <span className="properties-value">{this.props.data.model}</span>
@@ -46,4 +46,4 @@ class Card extends React.Component<{ data: IMobileInfo }> {
   }
 }
 
-export default Card;
+export default ProductCard;

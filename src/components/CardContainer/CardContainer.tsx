@@ -1,6 +1,6 @@
 import React from 'react';
 import './CardContainer.scss';
-import Card from '../Card/Card';
+import ProductCard from '../ProductCard/ProductCard';
 import { IMobileInfoList } from '../../types/types';
 
 class CardContainer extends React.Component<IMobileInfoList> {
@@ -12,7 +12,7 @@ class CardContainer extends React.Component<IMobileInfoList> {
     return (
       <div className="card-container">
         {this.props.dataList.map((mobile) => (
-          <Card data={mobile} key={mobile.id} />
+          <ProductCard data={mobile} key={mobile.id} />
         ))}
       </div>
     );
