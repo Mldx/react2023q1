@@ -1,5 +1,3 @@
-import React from 'react';
-
 const NAME_IS_MISSING = 'Please enter your name';
 const NAME_IS_NOT_CAPITALIZE = 'Please enter your name with capital letters';
 
@@ -15,7 +13,7 @@ const PERSONAL_DATA_ACCESSES_IS_MISSING = 'Please check the box';
 
 const GENDER_IS_MISSING = 'Please choose the gender';
 
-const FILE_IS_MISSING = 'Please add your image';
+const FILE_IS_MISSING = 'Please add your avatar';
 const FILE_IS_INCORRECT = 'Please add an image file';
 
 const checkName = (value: string | undefined) => {
@@ -67,32 +65,30 @@ const checkPersonalData = (value: boolean | undefined) => {
   return errorMessage;
 };
 
-const checkGender = (value: React.RefObject<HTMLInputElement>[]) => {
+const checkGender = (value: string | undefined) => {
   let errorMessage = '';
-  if (!value.some((opinion) => opinion.current?.checked)) {
+  if (!value) {
     errorMessage = GENDER_IS_MISSING;
   }
   return errorMessage;
 };
-const checkAvatar = (value: FileList | null | undefined) => {
+const checkAvatar = (value: File | undefined) => {
   let errorMessage = '';
-  if (value) {
-    if (value.length === 0) {
-      errorMessage = FILE_IS_MISSING;
-    } else if (!value[0]?.type.includes('image')) {
-      errorMessage = FILE_IS_INCORRECT;
-    }
+  if (!value) {
+    errorMessage = FILE_IS_MISSING;
+  } else if (!value.type.includes('image')) {
+    errorMessage = FILE_IS_INCORRECT;
   }
   return errorMessage;
 };
 
 const validator = {
   name: checkName,
-  surName: checkSurname,
+  surname: checkSurname,
   dateDelivery: checkDateDelivery,
   cityDelivery: checkCityDelivery,
   personalData: checkPersonalData,
-  genderList: checkGender,
+  gender: checkGender,
   avatar: checkAvatar,
 };
 

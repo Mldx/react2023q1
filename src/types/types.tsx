@@ -24,15 +24,26 @@ export interface INavigateLinkProps {
 }
 
 export interface IOrderingFormErrors {
-  name?: string;
-  surName?: string;
-  dateDelivery?: string;
-  cityDelivery?: string;
-  personalData?: string;
-  gender?: string;
-  avatar?: string;
+  name?: string | '';
+  surname?: string | '';
+  dateDelivery?: string | '';
+  cityDelivery?: string | '';
+  personalData?: string | '';
+  gender?: string | '';
+  avatar?: string | '';
+}
+
+export interface IOrderingFormData {
+  name: string | undefined;
+  surname: string | undefined;
+  dateDelivery: string | undefined;
+  cityDelivery: string | undefined;
+  personalData: boolean | undefined;
+  gender: string | undefined;
+  avatar: File | undefined;
 }
 
 export interface IOrderingFormState {
-  errors: IOrderingFormErrors;
+  formErrors: IOrderingFormErrors;
+  orderList: IOrderingFormData[];
 }

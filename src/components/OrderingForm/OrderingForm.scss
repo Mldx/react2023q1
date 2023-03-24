@@ -96,13 +96,17 @@
       cursor: pointer;
 
       &::file-selector-button {
-        cursor: pointer;
-        border: 0;
-        background: #539494;
-        color: #eaeaea;
         width: max-content;
         height: 35px;
+        cursor: pointer;
+        color: #eaeaea;
+        border: 0;
         border-radius: 5px;
+        background: #539494;
+
+        &:active {
+          transform: scale(0.98);
+        }
       }
     }
 
@@ -116,7 +120,6 @@
     flex-direction: column;
     box-sizing: border-box;
     width: 450px;
-
 
 
     .radio-options-box {
@@ -137,5 +140,29 @@
       }
     }
   }
+
+  button {
+    font-size: 2rem;
+    width: 250px;
+    height: 30px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: transform .1s linear, background-color .1s linear;
+    border: 0;
+    border-radius: 5px;
+
+    &:hover {
+      background: #ffffff;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
 }
+
 

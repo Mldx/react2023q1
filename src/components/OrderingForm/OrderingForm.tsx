@@ -1,6 +1,6 @@
 import React from 'react';
 import './OrderingForm.scss';
-import { IOrderingFormErrors, IOrderingFormOrder, IOrderingFormState } from '../../types/types';
+import { IOrderingFormErrors, IOrderingFormData, IOrderingFormState } from '../../types/types';
 import ValidationErrorMessage from './ValidationErrorMessage/ValidationErrorMessage';
 import validate from '../../utils/validate';
 
@@ -16,7 +16,7 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
   refList = {
     form: React.createRef<HTMLFormElement>(),
     inputName: React.createRef<HTMLInputElement>(),
-    inputSurName: React.createRef<HTMLInputElement>(),
+    inputSurname: React.createRef<HTMLInputElement>(),
     inputDateDelivery: React.createRef<HTMLInputElement>(),
     selectCityDelivery: React.createRef<HTMLSelectElement>(),
     inputPersonalData: React.createRef<HTMLInputElement>(),
@@ -28,26 +28,17 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
   };
 
   formIsValid = () => {
-    const [inputName, inputSurName, dateDelivery, cityDelivery, personalData, genderList, avatar] =
-      [
-        this.refList.inputName.current?.value,
-        this.refList.inputSurName.current?.value,
-        this.refList.inputDateDelivery.current?.value,
-        this.refList.selectCityDelivery.current?.value,
-        this.refList.inputPersonalData.current?.checked,
-        this.refList.inputRadioGenderList,
-        this.refList.inputAvatar.current?.files,
-      ];
-
+    const dataFromForm = this.getDataFromForm();
     const errors: IOrderingFormErrors = {};
 
-    errors.name = validate.name(inputName);
-    errors.surName = validate.surName(inputSurName);
-    errors.dateDelivery = validate.dateDelivery(dateDelivery);
-    errors.cityDelivery = validate.cityDelivery(cityDelivery);
-    errors.personalData = validate.personalData(personalData);
-    errors.gender = validate.genderList(genderList);
-    errors.avatar = validate.avatar(avatar);
+    errors.name = validate.name(dataFromForm.name);
+    errors.surname = validate.surname(dataFromForm.surname);
+    errors.dateDelivery = validate.dateDelivery(dataFromForm.dateDelivery);
+    errors.cityDelivery = validate.cityDelivery(dataFromForm.cityDelivery);
+    errors.personalData = validate.personalData(dataFromForm.personalData);
+    errors.gender = validate.gender(dataFromForm.gender);
+    errors.avatar = validate.avatar(dataFromForm.avatar);
+    console.log(dataFromForm.gender);
 
     this.setState({ formErrors: errors });
     return !Object.values(errors).some((err) => err.length > 0);
@@ -55,9 +46,21 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
   handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (this.formIsValid()) {
+      this.setState({ orderList: [...this.state.orderList, this.getDataFromForm()] });
       setTimeout(() => alert('Done'), 0);
       setTimeout(() => this.refList.form.current?.reset(), 0);
     }
+  };
+  private getDataFromForm = (): IOrderingFormData => {
+    return {
+      name: this.refList.inputName.current?.value,
+      surname: this.refList.inputSurname.current?.value,
+      dateDelivery: this.refList.inputDateDelivery.current?.value,
+      cityDelivery: this.refList.selectCityDelivery.current?.value,
+      personalData: this.refList.inputPersonalData.current?.checked,
+      gender: this.refList.inputRadioGenderList.find((el) => el.current?.checked)?.current?.value,
+      avatar: this.refList.inputAvatar.current?.files?.[0],
+    };
   };
 
   render() {
@@ -79,8 +82,8 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
 
           <label>
             Surname:
-            <input type="text" ref={this.refList.inputSurName} autoComplete="new-password" />
-            <ValidationErrorMessage errorMessage={this.state.formErrors.surName} />
+            <input type="text" ref={this.refList.inputSurname} autoComplete="new-password" />
+            <ValidationErrorMessage errorMessage={this.state.formErrors.surname} />
           </label>
 
           <label>
@@ -114,6 +117,7 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
                     type="radio"
                     ref={this.refList.inputRadioGenderList[index]}
                     name="gender"
+                    value={gender}
                   />
                   {gender}
                 </label>
