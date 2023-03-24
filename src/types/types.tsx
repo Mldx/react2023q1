@@ -22,3 +22,14 @@ export interface INavigateLinkProps {
   url: string;
   innerText: string;
 }
+
+export interface IOrderingFormErrors {
+  name?: string;
+  surName?: string;
+  dateDelivery?: string;
+  cityDelivery?: string;
+  personalData?: string;
+}
+export interface IOrderingFormState {
+  errors: IOrderingFormErrors;
+}
