@@ -5,7 +5,7 @@ import App from './App';
 import ProductCard from './components/ProductCard/ProductCard';
 import { describe } from 'vitest';
 import mobileData from './store/mobileData';
-import CardContainer from './components/CardContainer/CardContainer';
+import ProductCardContainer from './components/ProductCardContainer/ProductCardContainer';
 import SearchBar from './components/SearchBar/SearchBar';
 import userEvent from '@testing-library/user-event';
 
@@ -27,9 +27,9 @@ describe('ProductCard component testing', () => {
     expect(screen.getByText(mobileInfo3.model)).toBeVisible();
   });
 });
-describe('CardContainer component testing', () => {
+describe('ProductCardContainer component testing', () => {
   it(`quantity Card in CardContainer equal quantity mobileData objects`, () => {
-    render(<CardContainer dataList={mobileData} />);
+    render(<ProductCardContainer dataList={mobileData} />);
     expect(screen.getAllByText('Add to cart').length).toEqual(mobileData.length);
   });
 });

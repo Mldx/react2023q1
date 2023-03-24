@@ -1,7 +1,7 @@
 import React from 'react';
 import './HomePage.scss';
 import SearchBar from '../SearchBar/SearchBar';
-import CardContainer from '../CardContainer/CardContainer';
+import ProductCardContainer from '../ProductCardContainer/ProductCardContainer';
 import mobileData from '../../store/mobileData';
 
 class HomePage extends React.Component {
@@ -9,7 +9,7 @@ class HomePage extends React.Component {
     return (
       <div className="home-page">
         <SearchBar></SearchBar>
-        <CardContainer dataList={mobileData}></CardContainer>
+        <ProductCardContainer dataList={mobileData}></ProductCardContainer>
       </div>
     );
   }
