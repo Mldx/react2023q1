@@ -1,0 +1,15 @@
+.order-card {
+  display: flex;
+  padding: 20px;
+  border: 1px white solid;
+  border-radius: 5px;
+  box-shadow: #000000FF 10px 10px 10px 2px;
+  min-width: 1280px;
+
+  img {
+    border-radius: 50%;
+    width: 100px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+  }
+}
