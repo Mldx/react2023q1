@@ -29,7 +29,10 @@ export interface IOrderingFormErrors {
   dateDelivery?: string;
   cityDelivery?: string;
   personalData?: string;
+  gender?: string;
+  avatar?: string;
 }
+
 export interface IOrderingFormState {
   errors: IOrderingFormErrors;
 }

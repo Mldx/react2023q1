@@ -16,16 +16,18 @@
     cursor: pointer;
     user-select: none;
 
-    &.checkbox-personal-data {
+    &.personal-data-box {
       align-items: center;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: start;
+      box-sizing: border-box;
+      width: max-content;
     }
 
     input[type='text'] {
       font-size: 2rem;
       box-sizing: border-box;
-      width: 330px;
+      width: 450px;
       height: 30px;
       border: 1px transparent solid;
       border-radius: 5px;
@@ -41,7 +43,7 @@
     input[type='date'] {
       font-size: 2rem;
       box-sizing: border-box;
-      width: 330px;
+      width: 450px;
       height: 30px;
       cursor: pointer;
       border: 1px transparent solid;
@@ -61,7 +63,7 @@
     select {
       font-size: 2rem;
       box-sizing: border-box;
-      width: 330px;
+      width: 450px;
       height: 30px;
       cursor: pointer;
       border: 1px transparent solid;
@@ -80,21 +82,51 @@
 
     input[type='checkbox'] {
       box-sizing: border-box;
-      width: 25px;
-      height: 25px;
-      margin: 0;
+
+      width: 15px;
+      height: 15px;
+      margin: 0 10px 0 0;
       cursor: pointer;
     }
 
+  }
+
+  .gender-box {
+    font-size: 2.2rem;
+    position: relative;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 450px;
+
+
+    .radio-options-box {
+      display: flex;
+      flex-direction: row;
+      column-gap: 20px;
+      input {
+        margin: 0 10px 0 0;
+        cursor: pointer;
+        width: 15px;
+        height: 15px;
+      }
+
+      label {
+        align-items: center;
+        flex-direction: row;
+      }
+    }
   }
 
   .validation-error {
     font-size: 2rem;
     line-height: 2rem;
     position: absolute;
-    bottom: -20px;
+    bottom: -2rem;
     margin: 0;
     color: crimson;
+    cursor: pointer;
   }
 }
 

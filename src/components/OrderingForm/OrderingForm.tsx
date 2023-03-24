@@ -6,13 +6,7 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
   constructor(props: object) {
     super(props);
     this.state = {
-      errors: {
-        name: '',
-        surName: '',
-        dateDelivery: '',
-        cityDelivery: '',
-        personalData: '',
-      },
+      errors: {},
     };
   }
 
@@ -23,16 +17,24 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
     inputDateDelivery: React.createRef<HTMLInputElement>(),
     selectCityDelivery: React.createRef<HTMLSelectElement>(),
     inputPersonalData: React.createRef<HTMLInputElement>(),
+    inputRadioGenderList: [
+      React.createRef<HTMLInputElement>(),
+      React.createRef<HTMLInputElement>(),
+    ],
+    inputAvatar: React.createRef<HTMLInputElement>(),
   };
 
   formIsValid = () => {
-    const [inputName, inputSurName, dateDelivery, cityDelivery, personalData] = [
-      this.refList.inputName.current?.value,
-      this.refList.inputSurName.current?.value,
-      this.refList.inputDateDelivery.current?.value,
-      this.refList.selectCityDelivery.current?.value,
-      this.refList.inputPersonalData.current?.checked,
-    ];
+    const [inputName, inputSurName, dateDelivery, cityDelivery, personalData, genderList, avatar] =
+      [
+        this.refList.inputName.current?.value,
+        this.refList.inputSurName.current?.value,
+        this.refList.inputDateDelivery.current?.value,
+        this.refList.selectCityDelivery.current?.value,
+        this.refList.inputPersonalData.current?.checked,
+        this.refList.inputRadioGenderList,
+        this.refList.inputAvatar.current?.files,
+      ];
 
     const errors: IOrderingFormErrors = {};
     let formIsValid = true;
@@ -40,40 +42,59 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
 
     if (!inputName) {
       formIsValid = false;
-      errors['name'] = 'Please enter name';
+      errors['name'] = 'Please enter your name';
+    }
+    if (inputName && !/[A-Z]/.test(inputName[0])) {
+      formIsValid = false;
+      errors['name'] = 'Please enter your name with capital letters';
     }
     if (!inputSurName) {
       formIsValid = false;
-      errors['surName'] = 'Please enter surname';
+      errors['surName'] = 'Please enter your surname';
+    }
+    if (inputSurName && !/[A-Z]/.test(inputSurName[0])) {
+      formIsValid = false;
+      errors['surName'] = 'Please enter your surname with capital letters';
     }
     if (!dateDelivery) {
       formIsValid = false;
-      errors['dateDelivery'] = 'Please enter delivery date';
+      errors['dateDelivery'] = 'Please choose the delivery date';
     }
     if (
       dateDelivery &&
-      (new Date(dateDelivery) <= currentDate || new Date(dateDelivery).getFullYear() > 2024)
+      (new Date(dateDelivery) <= currentDate || new Date(dateDelivery).getFullYear() > 2030)
     ) {
       formIsValid = false;
-      errors['dateDelivery'] = 'Please enter correct date';
+      errors['dateDelivery'] = 'Please choose the correct date';
     }
     if (!cityDelivery) {
       formIsValid = false;
-      errors['cityDelivery'] = 'Please enter city delivery';
+      errors['cityDelivery'] = 'Please choose your city for delivery';
     }
-
-    console.log(personalData);
     if (!personalData) {
       formIsValid = false;
-      errors['personalData'] = 'Please agree checkbox';
+      errors['personalData'] = 'Please check the box';
+    }
+    if (!genderList.some((opinion) => opinion.current?.checked)) {
+      formIsValid = false;
+      errors['gender'] = 'Please choose the gender';
+    }
+    if (avatar && avatar.length === 0) {
+      formIsValid = false;
+      errors['avatar'] = 'Please add your avatar';
+    }
+    if (avatar && avatar[0] && !avatar[0]?.type.includes('image')) {
+      formIsValid = false;
+      errors['avatar'] = 'Please add image file';
     }
     this.setState({ errors });
     return formIsValid;
   };
-  handleSubmit = (e: React.FormEvent) => {
+  handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (this.formIsValid()) {
-      this.refList.form.current?.reset();
+      setTimeout(() => alert('Done'), 0);
+      setTimeout(() => this.refList.form.current?.reset(), 0);
     }
   };
   render() {
@@ -91,16 +112,19 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
               <input type="text" ref={this.refList.inputName} autoComplete="new-password" />
               <span className="validation-error">{this.state.errors['name']}</span>
             </label>
+
             <label>
               Surname:
               <input type="text" ref={this.refList.inputSurName} autoComplete="new-password" />
               <span className="validation-error">{this.state.errors['surName']}</span>
             </label>
+
             <label>
               Delivery date:
               <input type="date" ref={this.refList.inputDateDelivery} />
               <span className="validation-error">{this.state.errors['dateDelivery']}</span>
             </label>
+
             <label>
               Delivery city:
               <select ref={this.refList.selectCityDelivery}>
@@ -112,10 +136,32 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
               </select>
               <span className="validation-error">{this.state.errors['cityDelivery']}</span>
             </label>
-            <label className="checkbox-personal-data">
-              <input type="checkbox" ref={this.refList.inputPersonalData} />I consent to my personal
-              data:
+
+            <label className="personal-data-box">
+              <input type="checkbox" ref={this.refList.inputPersonalData} />I allow to use my
+              personal data:
               <span className="validation-error">{this.state.errors['personalData']}</span>
+            </label>
+
+            <div className="gender-box">
+              Gender:
+              <div className="radio-options-box">
+                <label>
+                  <input type="radio" ref={this.refList.inputRadioGenderList[0]} name="gender" />
+                  male
+                </label>
+                <label>
+                  <input type="radio" ref={this.refList.inputRadioGenderList[1]} name="gender" />
+                  female
+                </label>
+                <span className="validation-error">{this.state.errors['gender']}</span>
+              </div>
+            </div>
+
+            <label>
+              Your avatar:
+              <input type="file" ref={this.refList.inputAvatar} accept="image/*" />
+              <span className="validation-error">{this.state.errors['avatar']}</span>
             </label>
             <br />
             <button type="submit">Submit</button>
