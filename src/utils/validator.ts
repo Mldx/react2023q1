@@ -9,7 +9,7 @@ const SURNAME_IS_INCORRECT_LENGTH = 'Please enter your surname with 3-16 letters
 const SURNAME_IS_INCORRECT = 'Please enter your surname only with EN or RU letters';
 
 const DELIVERY_DATE_IS_MISSING = 'Please choose the delivery date';
-const DELIVERY_DATE_INCORRECT = 'Please choose the correct date';
+const DELIVERY_DATE_INCORRECT = 'Please select a date from tomorrow to 2030 year';
 
 const DELIVERY_CITY_IS_MISSING = 'Please choose your city for delivery';
 
