@@ -80,6 +80,10 @@ $border-radius-size-1: 5px;
     input[type='file'] {
       cursor: pointer;
 
+      &:focus-visible {
+        outline: none;
+      }
+
       &::file-selector-button {
         width: max-content;
         height: 35px;
@@ -91,6 +95,10 @@ $border-radius-size-1: 5px;
 
         &:active {
           transform: scale(0.98);
+        }
+
+        &:focus-visible {
+          outline: none;
         }
       }
     }
