@@ -44,7 +44,7 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
     return !Object.values(errors).some((err) => err.length > 0);
   };
 
-  handleSubmit = async (e: React.FormEvent) => {
+  handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (this.formIsValid()) {
       this.setState({ orderList: [...this.state.orderList, this.getDataFromForm()] });
