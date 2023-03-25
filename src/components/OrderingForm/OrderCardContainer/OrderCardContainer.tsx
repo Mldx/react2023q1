@@ -9,12 +9,14 @@ class OrderCardContainer extends React.Component<{ dataList: IOrderingFormData[]
   }
 
   render() {
-    return (
+    return this.props.dataList.length ? (
       <div className="order-cards-container">
         {this.props.dataList.map((data, index) => (
           <OrderCard data={data} key={index} />
         ))}
       </div>
+    ) : (
+      <></>
     );
   }
 }
