@@ -46,4 +46,5 @@ export interface IOrderingFormData {
 export interface IOrderingFormState {
   formErrors: IOrderingFormErrors;
   orderList: IOrderingFormData[];
+  orderCreated: boolean;
 }

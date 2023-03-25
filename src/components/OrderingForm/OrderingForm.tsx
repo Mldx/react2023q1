@@ -1,8 +1,9 @@
 import React from 'react';
 import './OrderingForm.scss';
-import { IOrderingFormErrors, IOrderingFormData, IOrderingFormState } from '../../types/types';
-import ValidationErrorMessage from './ValidationErrorMessage/ValidationErrorMessage';
+import './orderCreatedWindow.scss';
+import { IOrderingFormData, IOrderingFormErrors, IOrderingFormState } from '../../types/types';
 import validate from '../../utils/validator';
+import ValidationErrorMessage from './ValidationErrorMessage/ValidationErrorMessage';
 import OrderCardContainer from './OrderCardContainer/OrderCardContainer';
 
 class OrderingForm extends React.Component<object, IOrderingFormState> {
@@ -11,6 +12,7 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
     this.state = {
       formErrors: {},
       orderList: [],
+      orderCreated: false,
     };
   }
 
@@ -47,7 +49,10 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
   handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (this.formIsValid()) {
-      this.setState({ orderList: [...this.state.orderList, this.getDataFromForm()] });
+      this.setState({
+        orderList: [...this.state.orderList, this.getDataFromForm()],
+        orderCreated: true,
+      });
       this.refList.form.current?.reset();
     }
   };
@@ -135,6 +140,12 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
           <button type="submit">Submit</button>
         </form>
         <OrderCardContainer dataList={this.state.orderList} />
+        <div
+          className={`order-created-window ${this.state.orderCreated ? 'active' : ''}`}
+          onAnimationEnd={() => this.setState({ orderCreated: false })}
+        >
+          Order created!
+        </div>
       </>
     );
   }
