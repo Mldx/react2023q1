@@ -133,7 +133,6 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
             <input type="file" ref={this.refList.inputAvatar} accept="image/*" />
             <ValidationErrorMessage errorMessage={this.state.formErrors.avatar} />
           </label>
-          <br />
           <button type="submit">Submit</button>
         </form>
         <OrderCardContainer dataList={this.state.orderList} />
