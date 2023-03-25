@@ -69,7 +69,7 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
     const DELIVERY_CITIES = ['', 'Ankara', 'Minsk', 'Tbilisi', 'Vilnius', 'Warsaw'];
     const GENDERS = ['male', 'female'];
     return (
-      <div>
+      <>
         <form
           className="ordering-form"
           onSubmit={this.handleSubmit}
@@ -137,7 +137,7 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
           <button type="submit">Submit</button>
         </form>
         <OrderCardContainer dataList={this.state.orderList} />
-      </div>
+      </>
     );
   }
 }

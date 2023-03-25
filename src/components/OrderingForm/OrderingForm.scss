@@ -1,5 +1,11 @@
-.ordering-form {
+$width-input: 450px;
+$font-size-1: 2rem;
+$font-size-2: 2.2rem;
+$border-transparent-1px: 1px transparent solid;
+$border-radius-size-1: 5px;
 
+
+.ordering-form {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -8,7 +14,7 @@
   row-gap: 25px;
 
   label {
-    font-size: 2.2rem;
+    font-size: $font-size-2;
     position: relative;
     display: flex;
     align-items: start;
@@ -28,59 +34,38 @@
       width: max-content;
     }
 
-    input[type='text'] {
-      font-size: 2rem;
+    input[type='text'],
+    input[type='date'],
+    select {
+      font-size: $font-size-1;
       box-sizing: border-box;
-      width: 450px;
+      width: $width-input;
       height: 30px;
-      border: 1px transparent solid;
-      border-radius: 5px;
+      border: $border-transparent-1px;
+      border-radius: $border-radius-size-1;
+    }
 
-
-      &:focus-visible {
-        border: 1px #539494 solid;
-        outline: none;
-        box-shadow: #539494 0 0 4px 1px;
-      }
+    input[type='text']:focus-visible,
+    input[type='date']:focus-visible,
+    select:focus-visible {
+      border: 1px #539494 solid;
+      outline: none;
+      box-shadow: #539494 0 0 4px 1px;
     }
 
     input[type='date'] {
-      font-size: 2rem;
-      box-sizing: border-box;
-      width: 450px;
-      height: 30px;
       cursor: pointer;
-      border: 1px transparent solid;
-      border-radius: 5px;
 
       &::-webkit-calendar-picker-indicator {
         cursor: pointer;
       }
-
-      &:focus-visible {
-        border: 1px #539494 solid;
-        outline: none;
-        box-shadow: #539494 0 0 4px 1px;
-      }
     }
 
     select {
-      font-size: 2rem;
-      box-sizing: border-box;
-      width: 450px;
-      height: 30px;
       cursor: pointer;
-      border: 1px transparent solid;
-      border-radius: 5px;
 
       :first-child {
         display: none;
-      }
-
-      &:focus-visible {
-        border: 1px #539494 solid;
-        outline: none;
-        box-shadow: #539494 0 0 4px 1px;
       }
     }
 
@@ -101,7 +86,7 @@
         cursor: pointer;
         color: #eaeaea;
         border: 0;
-        border-radius: 5px;
+        border-radius: $border-radius-size-1;
         background: #539494;
 
         &:active {
@@ -113,13 +98,13 @@
   }
 
   .gender-box {
-    font-size: 2.2rem;
+    font-size: $font-size-2;
     position: relative;
     display: flex;
     align-items: start;
     flex-direction: column;
     box-sizing: border-box;
-    width: 450px;
+    width: $width-input;
 
 
     .radio-options-box {
@@ -142,14 +127,14 @@
   }
 
   button {
-    font-size: 2rem;
+    font-size: $font-size-1;
     width: 250px;
     height: 30px;
     margin: 0 auto;
     cursor: pointer;
     transition: transform .1s linear, background-color .1s linear;
     border: 0;
-    border-radius: 5px;
+    border-radius: $border-radius-size-1;
 
     &:hover {
       background: #ffffff;
