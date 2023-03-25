@@ -48,7 +48,6 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
     e.preventDefault();
     if (this.formIsValid()) {
       this.setState({ orderList: [...this.state.orderList, this.getDataFromForm()] });
-      alert('Done');
       this.refList.form.current?.reset();
     }
   };
