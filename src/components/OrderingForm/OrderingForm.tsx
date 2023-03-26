@@ -1,10 +1,11 @@
 import React from 'react';
 import './OrderingForm.scss';
-import './orderCreatedWindow.scss';
+import './OrderCreatedWindow/OrderCreatedWindow.scss';
 import { IOrderingFormData, IOrderingFormErrors, IOrderingFormState } from '../../types/types';
 import validate from '../../utils/validator';
 import ValidationErrorMessage from './ValidationErrorMessage/ValidationErrorMessage';
 import OrderCardContainer from './OrderCardContainer/OrderCardContainer';
+import OrderCreatedWindow from './OrderCreatedWindow/OrderCreatedWindow';
 
 class OrderingForm extends React.Component<object, IOrderingFormState> {
   constructor(props: object) {
@@ -140,12 +141,9 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
           <button type="submit">Submit</button>
         </form>
         <OrderCardContainer dataList={this.state.orderList} />
-        <div
-          className={`order-created-window ${this.state.orderCreated ? 'active' : ''}`}
-          onAnimationEnd={() => this.setState({ orderCreated: false })}
-        >
-          Order created!
-        </div>
+        {this.state.orderCreated && (
+          <OrderCreatedWindow onAnimationEnd={() => this.setState({ orderCreated: false })} />
+        )}
       </>
     );
   }

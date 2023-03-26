@@ -1,9 +1,10 @@
+$start-box-position: -100px;
+
 .order-created-window {
   font-size: 4.5rem;
   font-weight: 100;
-  display: none;
-  position: absolute;
-  top: -100px;
+  position: fixed;
+  top: $start-box-position;
   align-items: center;
   justify-content: center;
   width: 300px;
@@ -12,16 +13,13 @@
   border: 2px solid lighten(#288f2b, 10);
   border-radius: 5px;
   background-color: #288f2b;
-
-  &.active {
-    display: flex;
-    animation: example 2s ease-in-out;
-  }
+  display: flex;
+  animation: example 2s ease-in-out;
 }
 
 @keyframes example {
   0% {
-    top: -100px;
+    top: $start-box-position;
   }
   30% {
     top: 50px;
@@ -30,6 +28,6 @@
     top: 50px;
   }
   100% {
-    top: -100px;
+    top: $start-box-position;
   }
 }
