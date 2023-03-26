@@ -60,8 +60,8 @@ class OrderingForm extends React.Component<object, IOrderingFormState> {
 
   private getDataFromForm = (): IOrderingFormData => {
     return {
-      name: this.refList.inputName.current?.value,
-      surname: this.refList.inputSurname.current?.value,
+      name: this.refList.inputName.current?.value.trim(),
+      surname: this.refList.inputSurname.current?.value.trim(),
       dateDelivery: this.refList.inputDateDelivery.current?.value,
       cityDelivery: this.refList.selectCityDelivery.current?.value,
       personalData: this.refList.inputPersonalData.current?.checked,
