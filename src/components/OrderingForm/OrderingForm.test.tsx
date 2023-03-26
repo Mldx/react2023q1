@@ -4,6 +4,7 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import {
   DELIVERY_CITY_IS_MISSING,
+  FILE_IS_MISSING,
   GENDER_IS_MISSING,
   NAME_IS_INCORRECT_LENGTH,
   PERSONAL_DATA_ACCESSES_IS_MISSING,
@@ -49,5 +50,11 @@ describe('OrderCard component testing', () => {
     const submit = screen.getByText('Submit');
     await userEvent.click(submit);
     expect(screen.getByText(GENDER_IS_MISSING)).toBeVisible();
+  });
+  it(`testing field avatar`, async () => {
+    render(<OrderingForm />);
+    const submit = screen.getByText('Submit');
+    await userEvent.click(submit);
+    expect(screen.getByText(FILE_IS_MISSING)).toBeVisible();
   });
 });
