@@ -1,27 +1,27 @@
-const NAME_IS_MISSING = 'Please enter your name';
-const NAME_IS_NOT_CAPITALIZE = 'Please enter your name with capital letters';
-const NAME_IS_INCORRECT_LENGTH = 'Please enter your name with 3-16 letters';
-const NAME_IS_INCORRECT = 'Please enter your name only with EN or RU letters';
+export const NAME_IS_MISSING = 'Please enter your name';
+export const NAME_IS_NOT_CAPITALIZE = 'Please enter your name with capital letters';
+export const NAME_IS_INCORRECT_LENGTH = 'Please enter your name with 3-16 letters';
+export const NAME_IS_INCORRECT = 'Please enter your name only with EN or RU letters';
 
-const SURNAME_IS_MISSING = 'Please enter your surname';
-const SURNAME_IS_NOT_CAPITALIZE = 'Please enter your surname with capital letters';
-const SURNAME_IS_INCORRECT_LENGTH = 'Please enter your surname with 3-16 letters';
-const SURNAME_IS_INCORRECT = 'Please enter your surname only with EN or RU letters';
+export const SURNAME_IS_MISSING = 'Please enter your surname';
+export const SURNAME_IS_NOT_CAPITALIZE = 'Please enter your surname with capital letters';
+export const SURNAME_IS_INCORRECT_LENGTH = 'Please enter your surname with 3-16 letters';
+export const SURNAME_IS_INCORRECT = 'Please enter your surname only with EN or RU letters';
 
-const DELIVERY_DATE_IS_MISSING = 'Please choose the delivery date';
-const DELIVERY_DATE_INCORRECT = 'Please select a date from tomorrow to 2030 year';
+export const DELIVERY_DATE_IS_MISSING = 'Please choose the delivery date';
+export const DELIVERY_DATE_INCORRECT = 'Please select a date from tomorrow to 2030 year';
 
-const DELIVERY_CITY_IS_MISSING = 'Please choose your city for delivery';
+export const DELIVERY_CITY_IS_MISSING = 'Please choose your city for delivery';
 
-const PERSONAL_DATA_ACCESSES_IS_MISSING = 'Please check the box';
+export const PERSONAL_DATA_ACCESSES_IS_MISSING = 'Please check the box';
 
-const GENDER_IS_MISSING = 'Please choose the gender';
+export const GENDER_IS_MISSING = 'Please choose the gender';
 
-const FILE_IS_MISSING = 'Please add your avatar';
-const FILE_IS_INCORRECT = 'Please add an image file';
+export const FILE_IS_MISSING = 'Please add your avatar';
+export const FILE_IS_INCORRECT = 'Please add an image file';
 
-const REG_EXP_CAPITALIZE_EN_RU = new RegExp(/[A-ZА-Я]/);
-const REG_EXP_EN_RU = new RegExp(/[^A-ZА-Я]/i);
+export const REG_EXP_CAPITALIZE_EN_RU = new RegExp(/[A-ZА-Я]/);
+export const REG_EXP_EN_RU = new RegExp(/[^A-ZА-Я]/i);
 
 const checkName = (value: string | undefined) => {
   let errorMessage = '';
