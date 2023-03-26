@@ -14,10 +14,10 @@ $start-box-position: -100px;
   border-radius: 5px;
   background-color: #288f2b;
   display: flex;
-  animation: example 2s ease-in-out;
+  animation: dropDownAnimation 2s ease-in-out;
 }
 
-@keyframes example {
+@keyframes dropDownAnimation {
   0% {
     top: $start-box-position;
   }
