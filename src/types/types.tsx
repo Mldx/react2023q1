@@ -13,11 +13,6 @@ export interface IMobileInfoList {
   dataList: IMobileInfo[];
 }
 
-export interface IAddButtonState {
-  isAdded: boolean;
-  text: string;
-}
-
 export interface INavigateLinkProps {
   url: string;
   innerText: string;
