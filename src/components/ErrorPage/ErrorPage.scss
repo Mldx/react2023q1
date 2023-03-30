@@ -1,8 +1,8 @@
 .error-page {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-grow: 1;
+  justify-content: center;
 
   .error-container {
     display: flex;
@@ -22,8 +22,27 @@
     .error-container__404 {
       font-size: 7rem;
     }
+
     .error-container__description {
       font-size: 2rem;
     }
+
+    .home-button {
+      font-size: 2.5rem;
+      width: max-content;
+      margin: 10px auto 0;
+      padding: 5px 30px;
+      transition: background .15s linear, box-shadow .2s linear;
+      border: 1px solid white;
+      border-radius: 1rem;
+
+      background: #539494;
+
+      &:hover {
+        background: lighten(#539494, 5);
+        box-shadow: #539494 0 0 4px 2px;
+      }
+    }
   }
+
 }
