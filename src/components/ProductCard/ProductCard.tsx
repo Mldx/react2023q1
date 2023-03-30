@@ -2,6 +2,7 @@ import React from 'react';
 import './ProductCard.scss';
 import AddButton from './AddButton/AddButton';
 import { IMobileInfo } from '../../types/types';
+import PropertyProduct, { IPropertyProductProps } from './PropertyProduct/PropertyProduct';
 
 interface IProductCardProps {
   data: IMobileInfo;
@@ -9,39 +10,27 @@ interface IProductCardProps {
 
 function ProductCard(props: IProductCardProps) {
   const { image, model, color, ram, screen, cameras, price } = props.data;
+  const propertyFields: IPropertyProductProps[] = [
+    { fieldName: 'Model', value: model },
+    { fieldName: 'Color', value: color },
+    { fieldName: 'Ram', value: ram, specSymbol: 'gb' },
+    { fieldName: 'Screen', value: screen, specSymbol: 'inch' },
+    { fieldName: 'Cameras', value: cameras },
+    { fieldName: 'Price', value: price, specSymbol: '$' },
+  ];
   return (
     <div className="product-card">
       <div className="product-card__image-box">
         <img src={image} alt="mobile image" />
       </div>
       <div className="product-card__properties">
-        <div>
-          <span className="properties-name">Model:</span>
-          <span className="properties-value">{model}</span>
-        </div>
-        <div>
-          <span className="properties-name">Color:</span>
-          <span className="properties-value">{color}</span>
-        </div>
-        <div>
-          <span className="properties-name">Ram:</span>
-          <span className="properties-value">{ram} gb</span>
-        </div>
-        <div>
-          <span className="properties-name">Screen:</span>
-          <span className="properties-value">{screen} inch</span>
-        </div>
-        <div>
-          <span className="properties-name">Cameras:</span>
-          <span className="properties-value">{cameras}</span>
-        </div>
-        <div>
-          <span className="properties-name">Price:</span>
-          <span className="properties-value">{price} $</span>
-        </div>
+        {propertyFields.map((field) => (
+          <PropertyProduct {...field} key={field.fieldName} />
+        ))}
         <AddButton />
       </div>
     </div>
   );
 }
+
 export default ProductCard;
