@@ -9,10 +9,6 @@ export interface IMobileInfo {
   image: string;
 }
 
-export interface IMobileInfoList {
-  dataList: IMobileInfo[];
-}
-
 export interface INavigateLinkProps {
   url: string;
   innerText: string;
