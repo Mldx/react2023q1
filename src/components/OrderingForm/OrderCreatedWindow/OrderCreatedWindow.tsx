@@ -1,16 +1,8 @@
 import React from 'react';
+import './OrderCreatedWindow.scss';
 
-interface IOrderCreatedWindowProps {
-  onAnimationEnd: React.AnimationEventHandler<HTMLDivElement>;
-}
-
-function OrderCreatedWindow(props: IOrderCreatedWindowProps) {
-  const { onAnimationEnd } = props;
-  return (
-    <div className={`order-created-window`} onAnimationEnd={onAnimationEnd}>
-      Order created!
-    </div>
-  );
+function OrderCreatedWindow() {
+  return <div className={`order-created-window`}>Order created!</div>;
 }
 
 export default OrderCreatedWindow;
