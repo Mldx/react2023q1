@@ -23,16 +23,18 @@ function OrderingForm() {
   const GENDERS = ['male', 'female'];
 
   const [dataOrders, setDataOrders] = useState<IOrderingFormData[]>([]);
+  const [orderCreated, setOrderCreated] = useState(false);
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
     reset,
   } = useForm<IOrderingForm>({ mode: 'onSubmit', reValidateMode: 'onSubmit' });
 
   const onSubmit: SubmitHandler<IOrderingForm> = (data) => {
     const avatarObject = getFirstFileFromList(data.avatar);
     setDataOrders([...dataOrders, { ...data, avatar: avatarObject }]);
+    setOrderCreated(true);
     reset();
   };
 
@@ -135,7 +137,7 @@ function OrderingForm() {
         <button type="submit">Submit</button>
       </form>
       <OrderCardContainer dataList={dataOrders} />
-      {isSubmitSuccessful && <OrderCreatedWindow />}
+      {orderCreated && <OrderCreatedWindow onAnimationEnd={() => setOrderCreated(false)} />}
     </>
   );
 }
