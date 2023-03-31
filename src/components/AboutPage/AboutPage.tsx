@@ -3,7 +3,7 @@ import './AboutPage.scss';
 
 function AboutPage() {
   return (
-    <div className="about-page">
+    <div className="about-wrapper">
       <div className="about-container">
         <p className="about-container__title">About us!</p>
         <div className="about-container__description">

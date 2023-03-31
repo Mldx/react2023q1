@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function ErrorPage() {
   return (
-    <div className="error-page">
+    <div className="error-wrapper">
       <div className="error-container">
         <p className="error-container__title">Oops!</p>
         <h1 className="error-container__404">404</h1>

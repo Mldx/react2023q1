@@ -6,7 +6,7 @@ import mobileData from '../../store/mobileData';
 
 function HomePage() {
   return (
-    <div className="home-page">
+    <div className="home-wrapper">
       <SearchBar></SearchBar>
       <ProductCardContainer dataList={mobileData}></ProductCardContainer>
     </div>

@@ -4,7 +4,7 @@ import OrderingForm from '../OrderingForm/OrderingForm';
 
 function FormPage() {
   return (
-    <div className="form-page">
+    <div className="form-wrapper">
       <OrderingForm />
     </div>
   );
