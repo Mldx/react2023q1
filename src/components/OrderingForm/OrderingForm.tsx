@@ -45,6 +45,7 @@ function OrderingForm() {
             type="text"
             autoComplete="new-password"
             {...register('name', {
+              setValueAs: (value) => value.trim(),
               validate: (nameValue) => validator.name(nameValue),
             })}
           />
@@ -57,6 +58,7 @@ function OrderingForm() {
             type="text"
             autoComplete="new-password"
             {...register('surname', {
+              setValueAs: (value) => value.trim(),
               validate: (surnameValue) => validator.surname(surnameValue),
             })}
           />
