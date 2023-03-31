@@ -1,32 +1,33 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './SearchBar.scss';
 
-class SearchBar extends React.Component<object, { value: string }> {
-  constructor(props: object) {
-    super(props);
-    this.state = { value: localStorage.getItem('searchBarValue') || '' };
-  }
+function SearchBar() {
+  const initialValue = localStorage.getItem('searchBarValue') || '';
+  const [value, setValue] = useState(initialValue);
+  const searchBarValueRef = useRef(value);
 
-  componentWillUnmount() {
-    localStorage.setItem('searchBarValue', this.state.value || '');
-  }
+  useEffect(() => {
+    return () => {
+      localStorage.setItem('searchBarValue', searchBarValueRef.current);
+    };
+  }, []);
 
-  handleChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ value: event.target.value });
+  const handleChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const currentSearchValue = event.target.value;
+    setValue(currentSearchValue);
+    searchBarValueRef.current = currentSearchValue;
   };
 
-  render() {
-    return (
-      <div className="searchBar">
-        <input
-          className="searchBar__input"
-          type={'text'}
-          value={this.state.value}
-          onChange={this.handleChangeValue}
-        />
-      </div>
-    );
-  }
+  return (
+    <div className="searchBar">
+      <input
+        className="searchBar__input"
+        type={'text'}
+        value={value}
+        onChange={handleChangeValue}
+      />
+    </div>
+  );
 }
 
 export default SearchBar;

@@ -34,7 +34,7 @@ const checkName = (value: string | undefined) => {
   } else if (!REG_EXP_CAPITALIZE_EN_RU.test(value[0])) {
     errorMessage = NAME_IS_NOT_CAPITALIZE;
   }
-  return errorMessage;
+  return errorMessage ? errorMessage : true;
 };
 
 const checkSurname = (value: string | undefined) => {
@@ -48,7 +48,7 @@ const checkSurname = (value: string | undefined) => {
   } else if (!REG_EXP_CAPITALIZE_EN_RU.test(value[0])) {
     errorMessage = SURNAME_IS_NOT_CAPITALIZE;
   }
-  return errorMessage;
+  return errorMessage ? errorMessage : true;
 };
 const checkDateDelivery = (value: string | undefined) => {
   let errorMessage = '';
@@ -62,7 +62,7 @@ const checkDateDelivery = (value: string | undefined) => {
       errorMessage = DELIVERY_DATE_INCORRECT;
     }
   }
-  return errorMessage;
+  return errorMessage ? errorMessage : true;
 };
 
 const checkCityDelivery = (value: string | undefined) => {
@@ -70,14 +70,14 @@ const checkCityDelivery = (value: string | undefined) => {
   if (!value) {
     errorMessage = DELIVERY_CITY_IS_MISSING;
   }
-  return errorMessage;
+  return errorMessage ? errorMessage : true;
 };
 const checkPersonalData = (value: boolean | undefined) => {
   let errorMessage = '';
   if (!value) {
     errorMessage = PERSONAL_DATA_ACCESSES_IS_MISSING;
   }
-  return errorMessage;
+  return errorMessage ? errorMessage : true;
 };
 
 const checkGender = (value: string | undefined) => {
@@ -85,7 +85,7 @@ const checkGender = (value: string | undefined) => {
   if (!value) {
     errorMessage = GENDER_IS_MISSING;
   }
-  return errorMessage;
+  return errorMessage ? errorMessage : true;
 };
 const checkAvatar = (value: File | undefined) => {
   let errorMessage = '';
@@ -94,7 +94,7 @@ const checkAvatar = (value: File | undefined) => {
   } else if (!value.type.includes('image')) {
     errorMessage = FILE_IS_INCORRECT;
   }
-  return errorMessage;
+  return errorMessage ? errorMessage : true;
 };
 
 const validator = {
