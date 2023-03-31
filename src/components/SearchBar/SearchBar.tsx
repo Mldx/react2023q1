@@ -6,9 +6,7 @@ function SearchBar() {
   const [value, setValue] = useState(initialValue);
 
   useEffect(() => {
-    return () => {
-      localStorage.setItem('searchBarValue', value);
-    };
+    localStorage.setItem('searchBarValue', value);
   }, [value]);
   const handleChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
