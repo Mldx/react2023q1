@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './OrderCreatedWindow.scss';
 
 function OrderCreatedWindow() {
-  return <div className={`order-created-window`}>Order created!</div>;
+  const [isActive, setIsActive] = useState(true);
+
+  return isActive ? (
+    <div className={`order-created-window`} onAnimationEnd={() => setIsActive(false)}>
+      Order created!
+    </div>
+  ) : (
+    <></>
+  );
 }
 
 export default OrderCreatedWindow;
