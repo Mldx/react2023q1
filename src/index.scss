@@ -11,13 +11,10 @@
 #root {
   flex-direction: column;
   display: flex;
-  max-width: 1280px;
 }
 
 body {
-  display: flex;
   min-width: 320px;
-  min-height: 100vh;
   margin: 0;
 }
 

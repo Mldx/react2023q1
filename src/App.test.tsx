@@ -2,34 +2,34 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
 import App from './App';
-import Card from './components/Card/Card';
+import ProductCard from './components/ProductCard/ProductCard';
 import { describe } from 'vitest';
 import mobileData from './store/mobileData';
-import CardContainer from './components/CardContainer/CardContainer';
+import ProductCardContainer from './components/ProductCardContainer/ProductCardContainer';
 import SearchBar from './components/SearchBar/SearchBar';
 import userEvent from '@testing-library/user-event';
 
-describe('Card component testing', () => {
+describe('ProductCard component testing', () => {
   const [mobileInfo1, mobileInfo2, mobileInfo3] = mobileData;
 
   it(`testing card component with ${mobileInfo1.model}`, () => {
-    render(<Card data={mobileInfo1} />);
+    render(<ProductCard data={mobileInfo1} />);
     expect(screen.getByText(mobileInfo1.model)).toBeVisible();
   });
 
   it(`testing card component with ${mobileInfo2.model}`, () => {
-    render(<Card data={mobileInfo2} />);
+    render(<ProductCard data={mobileInfo2} />);
     expect(screen.getByText(mobileInfo2.model)).toBeVisible();
   });
 
   it(`testing card component with ${mobileInfo3.model}`, () => {
-    render(<Card data={mobileInfo3} />);
+    render(<ProductCard data={mobileInfo3} />);
     expect(screen.getByText(mobileInfo3.model)).toBeVisible();
   });
 });
-describe('CardContainer component testing', () => {
+describe('ProductCardContainer component testing', () => {
   it(`quantity Card in CardContainer equal quantity mobileData objects`, () => {
-    render(<CardContainer dataList={mobileData} />);
+    render(<ProductCardContainer dataList={mobileData} />);
     expect(screen.getAllByText('Add to cart').length).toEqual(mobileData.length);
   });
 });

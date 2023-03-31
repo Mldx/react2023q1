@@ -1,0 +1,163 @@
+$width-input: 450px;
+$font-size-1: 2rem;
+$font-size-2: 2.2rem;
+$border-transparent-1px: 1px transparent solid;
+$border-radius-size-1: 5px;
+
+
+.ordering-form {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-width: fit-content;
+  margin: 0 auto;
+  row-gap: 25px;
+
+  label {
+    font-size: $font-size-2;
+    position: relative;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    cursor: pointer;
+    user-select: none;
+
+    &.personal-data-box {
+      align-items: center;
+      flex-direction: row;
+      justify-content: start;
+      box-sizing: border-box;
+      width: max-content;
+    }
+
+    &.input-avatar-box {
+      width: max-content;
+    }
+
+    input[type='text'],
+    input[type='date'],
+    select {
+      font-size: $font-size-1;
+      box-sizing: border-box;
+      width: $width-input;
+      height: 30px;
+      border: $border-transparent-1px;
+      border-radius: $border-radius-size-1;
+    }
+
+    input[type='text']:focus-visible,
+    input[type='date']:focus-visible,
+    select:focus-visible {
+      border: 1px #539494 solid;
+      outline: none;
+      box-shadow: #539494 0 0 4px 1px;
+    }
+
+    input[type='date'] {
+      cursor: pointer;
+
+      &::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+      }
+    }
+
+    select {
+      cursor: pointer;
+
+      :first-child {
+        display: none;
+      }
+    }
+
+    input[type='checkbox'] {
+      box-sizing: border-box;
+      width: 15px;
+      height: 15px;
+      margin: 0 10px 0 0;
+      cursor: pointer;
+    }
+
+    input[type='file'] {
+      cursor: pointer;
+
+      &:focus-visible {
+        outline: none;
+      }
+
+      &::file-selector-button {
+        width: max-content;
+        height: 35px;
+        cursor: pointer;
+        color: #eaeaea;
+        border: 0;
+        border-radius: $border-radius-size-1;
+        background: #539494;
+
+        &:active {
+          transform: scale(0.98);
+        }
+
+        &:focus-visible {
+          outline: none;
+        }
+      }
+    }
+
+  }
+
+  .gender-box {
+    font-size: $font-size-2;
+    position: relative;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: $width-input;
+    user-select: none;
+
+
+    .radio-options-box {
+      display: flex;
+      flex-direction: row;
+      column-gap: 20px;
+
+      input {
+        width: 15px;
+        height: 15px;
+        margin: 0 10px 0 0;
+        cursor: pointer;
+      }
+
+      label {
+        align-items: center;
+        flex-direction: row;
+      }
+    }
+  }
+
+  button {
+    font-size: $font-size-1;
+    width: 250px;
+    height: 30px;
+    margin: 40px auto 0;
+    cursor: pointer;
+    user-select: none;
+    transition: transform .1s linear, background-color .1s linear;
+    border: 0;
+    border-radius: $border-radius-size-1;
+
+    &:hover {
+      background: #ffffff;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+}
+
+
