@@ -1,0 +1,13 @@
+.image-card_popup-container {
+  font-size: 1.6rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  cursor: pointer;
+  background: rgba(39, 40, 40, 0.33);
+  backdrop-filter: blur(15px);
+}
