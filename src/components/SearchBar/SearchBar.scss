@@ -4,27 +4,39 @@
   justify-content: center;
   box-sizing: border-box;
   width: 350px;
+  max-width: 95vw;
   height: 40px;
-  border: #539494 solid 2px;
+  transition: width .3s ease-out;
+  border: #539494 solid 1px;
   border-radius: 20px;
   background: #F0F8FFFF;
 
+
+  &:focus-within {
+    width: 450px;
+    box-shadow: #539494 0 0 4px 1px;
+  }
 
   .searchBar__input {
     font-size: 2rem;
     box-sizing: border-box;
     width: 300px;
+    max-width: calc(95vw - 50px);
     height: 36px;
     padding: 0;
+    transition: width .3s ease-out;
+    color: #539494;
     border: transparent solid 0;
     background: #F0F8FFFF;
-    color: #539494;
   }
 
   .searchBar__input:focus-visible {
     outline: none;
   }
+
   .searchBar__input:focus {
+    width: 400px;
     outline: none;
   }
 }
+
