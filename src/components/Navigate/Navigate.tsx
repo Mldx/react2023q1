@@ -12,6 +12,7 @@ function Navigate() {
     { name: 'Home', url: '' },
     { name: 'About', url: 'about' },
     { name: 'Form', url: 'form' },
+    { name: 'Api', url: 'api' },
   ];
   return (
     <nav className="navigate-container">
