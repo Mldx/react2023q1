@@ -1,0 +1,39 @@
+.image-card_container {
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 320px;
+  text-align: start;
+  border-radius: 1rem;
+  background: #191919;
+  box-shadow: #191919 0 1px 5px 1px;
+
+  img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+  }
+
+  .image-card_info {
+    font-size: 1.6rem;
+
+    font-weight: 100;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 40px 10px;
+
+    .image-card_info-photographer {
+      font-size: 1.8rem;
+    }
+
+    .image-card_like {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      column-gap: 5px;
+    }
+  }
+}
