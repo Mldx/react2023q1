@@ -1,7 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import './SearchBar.scss';
 
-function SearchBar() {
+interface ISearchBarProps {
+  func?: Dispatch<SetStateAction<string>>;
+}
+
+function SearchBar({ func }: ISearchBarProps) {
   const initialValue = localStorage.getItem('searchBarValue') || '';
   const [value, setValue] = useState(initialValue);
   const searchBarValueRef = useRef(value);
@@ -17,6 +21,11 @@ function SearchBar() {
     setValue(currentSearchValue);
     searchBarValueRef.current = currentSearchValue;
   };
+  const handleEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (func) {
+      e.code === 'Enter' && func(value);
+    }
+  };
 
   return (
     <div className="searchBar">
@@ -25,6 +34,7 @@ function SearchBar() {
         type={'text'}
         value={value}
         onChange={handleChangeValue}
+        onKeyUp={handleEnterKey}
       />
     </div>
   );
