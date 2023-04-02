@@ -9,64 +9,64 @@ interface IImageCardPopupProps {
 }
 
 function ImageCardPopup(props: IImageCardPopupProps) {
-  const { photo } = props;
+  const {
+    photo: { urls, user, likes, width, height },
+  } = props;
   return (
     <div className="image-card_popup-container">
       <div className="image-card_popup-box">
         <div className="popup-container_image-box">
-          <img src={photo.urls.regular} alt="photo" draggable="false" />
+          <img src={urls.regular} alt="photo" draggable="false" />
         </div>
 
         <div className="popup-container_info-box">
           <div className="info-box_photographer">
-            <a href={photo.user.links.html} target="_blank" rel="noreferrer">
+            <a href={user.links.html} target="_blank" rel="noreferrer">
               <img
-                src={photo.user.profile_image.large}
+                src={user.profile_image.large}
                 alt="photographer-avatar"
                 className="info-box_photographer-avatar"
                 draggable="false"
               />
             </a>
             <div className="info-box_photographer-text">
-              <span className="info-box_photographer-title">{photo.user.name}</span>
+              <span className="info-box_photographer-title">{user.name}</span>
 
-              {photo.user.instagram_username && photo.user.instagram_username.length < 20 && (
+              {user.instagram_username && user.instagram_username.length < 20 && (
                 <span className="info-box_photographer-instagram">
                   Instagram:
                   <a
-                    href={`https://www.instagram.com/${photo.user.instagram_username}`}
+                    href={`https://www.instagram.com/${user.instagram_username}`}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    &#32;@{photo.user.instagram_username}
+                    &#32;@{user.instagram_username}
                   </a>
                 </span>
               )}
 
-              {photo.user.twitter_username && photo.user.twitter_username.length < 20 && (
+              {user.twitter_username && user.twitter_username.length < 20 && (
                 <span className="info-box_photographer-twitter">
                   Twitter:
                   <a
-                    href={`https://www.twitter.com/${photo.user.twitter_username}`}
+                    href={`https://www.twitter.com/${user.twitter_username}`}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    &#32;@{photo.user.twitter_username}
+                    &#32;@{user.twitter_username}
                   </a>
                 </span>
               )}
 
-              {photo.user.location && photo.user.location.length < 20 && (
-                <span>{photo.user.location}</span>
-              )}
+              {user.location && user.location.length < 20 && <span>{user.location}</span>}
             </div>
           </div>
           <div className="info-box_image">
             <span className="info-box_like-box">
-              {photo.likes} <LikeIcon />
+              {likes} <LikeIcon />
             </span>
             <span>
-              Original image size: {photo.width} x {photo.height}&#32;px
+              Original image size: {width} x {height}&#32;px
             </span>
           </div>
         </div>
