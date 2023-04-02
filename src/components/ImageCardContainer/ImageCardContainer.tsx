@@ -12,6 +12,8 @@ const api = createApi({
 
 function ImageCardContainer(props: { currentQuery: string }) {
   const [data, setData] = useState<ApiResponse<Photos> | null>(null);
+  const [customErr, setCustomErr] = useState('');
+
   useEffect(() => {
     setData(null);
     api.search
@@ -23,17 +25,30 @@ function ImageCardContainer(props: { currentQuery: string }) {
       })
       .then((result) => {
         setData(result);
+      })
+      .catch((err) => {
+        setCustomErr(err.message);
       });
   }, [props.currentQuery]);
 
-  if (!data) {
+  if (data === null) {
+    if (customErr) {
+      return (
+        <div className="image_card-error_message">
+          <div>
+            The limit of 50 requests/hour has been reached. Please come back when the next hour
+            begins.
+          </div>
+        </div>
+      );
+    }
     return <LoadingScreen />;
   }
 
   if (data.errors) {
     return (
       <div className="image_card-error_message">
-        <div>{data.errors[0]}</div>
+        <div>{data.errors?.[0]}</div>
       </div>
     );
   }
