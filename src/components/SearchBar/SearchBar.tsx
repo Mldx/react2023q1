@@ -23,7 +23,7 @@ function SearchBar({ func }: ISearchBarProps) {
   };
   const handleEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (func) {
-      e.code === 'Enter' && func(value);
+      (e.code === 'Enter' || e.code === 'NumpadEnter') && func(value);
     }
   };
 
