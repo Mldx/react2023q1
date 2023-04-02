@@ -26,7 +26,7 @@ function ImageCard(photo: Basic) {
         <div className="image-card_info">
           <span className="image-card_info-photographer">Photographer: {name}</span>
 
-          {instagram_username && (
+          {instagram_username && instagram_username.length < 20 && (
             <span>
               Instagram:
               <a
@@ -38,7 +38,7 @@ function ImageCard(photo: Basic) {
               </a>
             </span>
           )}
-          {twitter_username && (
+          {twitter_username && twitter_username.length < 20 && (
             <span>
               Twitter:
               <a
