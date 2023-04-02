@@ -19,7 +19,7 @@ function ImageCard(photo: Basic) {
 
   return (
     <>
-      <div className="image-card_container" onClick={togglePopup}>
+      <div className="image-card_container" onClick={togglePopup} data-testid="image-card">
         <div className="image-card_box">
           <img src={urls.small} alt="photo" draggable="false" />
         </div>

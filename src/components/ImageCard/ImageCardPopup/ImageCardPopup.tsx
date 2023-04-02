@@ -11,7 +11,7 @@ interface IImageCardPopupProps {
 function ImageCardPopup(props: IImageCardPopupProps) {
   const { photo } = props;
   return (
-    <div className="image-card_popup-container">
+    <div className="image-card_popup-container" data-testid="image-card_popup-container">
       <div className="image-card_popup-box">
         <div className="popup-container_image-box">
           <img src={photo.urls.regular} alt="photo" draggable="false" />
