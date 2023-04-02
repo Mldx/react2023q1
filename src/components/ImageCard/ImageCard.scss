@@ -3,10 +3,16 @@
   overflow: hidden;
   box-sizing: border-box;
   width: 320px;
+  cursor: pointer;
+  transition: transform .1s linear;
   text-align: start;
   border-radius: 1rem;
   background: #191919;
   box-shadow: #191919 0 1px 5px 1px;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 
   img {
     width: 100%;
@@ -21,6 +27,14 @@
     display: flex;
     flex-direction: column;
     padding: 10px 10px 40px 10px;
+
+    a:hover {
+      transition: color .15s linear;
+      &:hover {
+        color: #539494;
+      }
+    }
+
 
     .image-card_info-photographer {
       font-size: 1.8rem;
