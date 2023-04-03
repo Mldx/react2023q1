@@ -6,7 +6,7 @@ interface ISearchBarProps {
 }
 
 function SearchBar({ func }: ISearchBarProps) {
-  const initialValue = localStorage.getItem('searchBarValue') || '';
+  const initialValue = localStorage.getItem('searchBarValue') || 'cat';
   const [value, setValue] = useState(initialValue);
   const searchBarValueRef = useRef(value);
 

@@ -4,7 +4,8 @@ import ImageCardContainer from '../ImageCardContainer/ImageCardContainer';
 import SearchBar from '../SearchBar/SearchBar';
 
 function HomePage() {
-  const [query, setQuery] = useState('cat');
+  const initialValue = localStorage.getItem('searchBarValue') || 'cat';
+  const [query, setQuery] = useState(initialValue);
 
   return (
     <div className="home-wrapper">
