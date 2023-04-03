@@ -2,37 +2,9 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
 import App from './App';
-import ProductCard from './components/ProductCard/ProductCard';
 import { describe } from 'vitest';
-import mobileData from './store/mobileData';
-import ProductCardContainer from './components/ProductCardContainer/ProductCardContainer';
 import SearchBar from './components/SearchBar/SearchBar';
 import userEvent from '@testing-library/user-event';
-
-describe('ProductCard component testing', () => {
-  const [mobileInfo1, mobileInfo2, mobileInfo3] = mobileData;
-
-  it(`testing card component with ${mobileInfo1.model}`, () => {
-    render(<ProductCard data={mobileInfo1} />);
-    expect(screen.getByText(mobileInfo1.model)).toBeVisible();
-  });
-
-  it(`testing card component with ${mobileInfo2.model}`, () => {
-    render(<ProductCard data={mobileInfo2} />);
-    expect(screen.getByText(mobileInfo2.model)).toBeVisible();
-  });
-
-  it(`testing card component with ${mobileInfo3.model}`, () => {
-    render(<ProductCard data={mobileInfo3} />);
-    expect(screen.getByText(mobileInfo3.model)).toBeVisible();
-  });
-});
-describe('ProductCardContainer component testing', () => {
-  it(`quantity Card in CardContainer equal quantity mobileData objects`, () => {
-    render(<ProductCardContainer dataList={mobileData} />);
-    expect(screen.getAllByText('Add to cart').length).toEqual(mobileData.length);
-  });
-});
 
 describe('LocalStorage testing', () => {
   beforeEach(() => {
@@ -85,16 +57,5 @@ describe('Router testing', () => {
     );
 
     expect(screen.getByText(/404/i)).toBeVisible();
-  });
-  it('Landing on HomePage', () => {
-    const homePage = '/';
-
-    render(
-      <MemoryRouter initialEntries={[homePage]}>
-        <App />
-      </MemoryRouter>
-    );
-
-    expect(screen.getByText(/Iphone 14 pro max/i)).toBeVisible();
   });
 });

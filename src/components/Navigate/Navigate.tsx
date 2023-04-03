@@ -10,9 +10,8 @@ interface INavigateLink {
 function Navigate() {
   const navigateLinkList: INavigateLink[] = [
     { name: 'Home', url: '' },
-    { name: 'About', url: 'about' },
     { name: 'Form', url: 'form' },
-    { name: 'Api', url: 'api' },
+    { name: 'About us', url: 'about' },
   ];
   return (
     <nav className="navigate-container">

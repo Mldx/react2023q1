@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
-import SearchPage from '../SearchPage/SearchPage';
+import HomePage from '../HomePage/HomePage';
 
 describe('API test', () => {
   it('renders image cards when API returns results', async () => {
-    render(<SearchPage />);
+    render(<HomePage />);
     await waitFor(() => expect(screen.getAllByTestId('image-card')).toHaveLength(6));
   });
 });

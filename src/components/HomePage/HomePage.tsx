@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './HomePage.scss';
+import ImageCardContainer from '../ImageCardContainer/ImageCardContainer';
 import SearchBar from '../SearchBar/SearchBar';
-import ProductCardContainer from '../ProductCardContainer/ProductCardContainer';
-import mobileData from '../../store/mobileData';
 
 function HomePage() {
+  const [query, setQuery] = useState('cat');
+
   return (
     <div className="home-wrapper">
-      <SearchBar></SearchBar>
-      <ProductCardContainer dataList={mobileData}></ProductCardContainer>
+      <SearchBar func={setQuery}></SearchBar>
+      <ImageCardContainer currentQuery={query} />
     </div>
   );
 }
