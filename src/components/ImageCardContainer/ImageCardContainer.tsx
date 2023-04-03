@@ -3,7 +3,7 @@ import './ImageCardContainer.scss';
 import { createApi } from 'unsplash-js';
 import { ApiResponse } from 'unsplash-js/dist/helpers/response';
 import { Photos } from 'unsplash-js/dist/methods/search/types/response';
-import ImageCard from '../ImageCard/ImageCard';
+import ImageCard from './ImageCard/ImageCard';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 
 const api = createApi({

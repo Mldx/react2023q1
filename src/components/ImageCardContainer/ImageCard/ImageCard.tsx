@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ImageCard.scss';
 import { Basic } from 'unsplash-js/dist/methods/photos/types';
-import LikeIcon from '../LikeIcon/LikeIcon';
+import LikeIcon from '../../LikeIcon/LikeIcon';
 import ImageCardPopup from './ImageCardPopup/ImageCardPopup';
 
 function ImageCard(photo: Basic) {

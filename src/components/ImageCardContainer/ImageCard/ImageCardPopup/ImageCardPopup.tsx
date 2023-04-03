@@ -1,7 +1,7 @@
 import React from 'react';
 import './ImageCardPopup.scss';
 import { Basic } from 'unsplash-js/dist/methods/photos/types';
-import LikeIcon from '../../LikeIcon/LikeIcon';
+import LikeIcon from '../../../LikeIcon/LikeIcon';
 
 interface IImageCardPopupProps {
   func: (e: React.MouseEvent<HTMLElement>) => void;
