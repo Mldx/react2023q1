@@ -23,15 +23,16 @@ describe('LocalStorage testing', () => {
     const { unmount } = render(<SearchBar />);
     const input = screen.getByRole('textbox');
     const userInputValue = 'Iphone 14 pro max';
+    await userEvent.clear(input);
     await userEvent.type(input, userInputValue);
     unmount();
     expect(localStorage.getItem(mockId)).toEqual(userInputValue);
   });
 
-  it(`testing null value in LS'`, async () => {
+  it(`testing init value ('cat') in LS'`, async () => {
     render(<SearchBar />);
     screen.getByRole('textbox');
-    expect(screen.getByRole('textbox')).toHaveDisplayValue('');
+    expect(screen.getByRole('textbox')).toHaveDisplayValue('cat');
   });
 });
 
