@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './HomePage.scss';
-import ImageCardContainer from '../ImageCardContainer/ImageCardContainer';
-import SearchBar from '../SearchBar/SearchBar';
+import ImageCardContainer from '../../ui/ImageCardContainer/ImageCardContainer';
+import SearchBar from '../../ui/SearchBar/SearchBar';
 
 function HomePage() {
   const initialValue = localStorage.getItem('searchBarValue') || 'cat';

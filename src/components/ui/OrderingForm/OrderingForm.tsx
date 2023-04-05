@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './OrderingForm.scss';
-import { IOrderingFormData } from '../../types/types';
+import { IOrderingFormData } from '../../../types/types';
 import ValidationErrorMessage from './ValidationErrorMessage/ValidationErrorMessage';
 import OrderCardContainer from './OrderCardContainer/OrderCardContainer';
 import OrderCreatedWindow from './OrderCreatedWindow/OrderCreatedWindow';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import validator from '../../utils/validator';
-import getFirstFileFromList from '../../utils/getFirstFileFromList';
+import validator from '../../../utils/validator';
+import getFirstFileFromList from '../../../utils/getFirstFileFromList';
 
 interface IOrderingForm {
   name: string;

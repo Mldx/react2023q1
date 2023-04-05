@@ -16,7 +16,7 @@ import {
   SURNAME_IS_INCORRECT_LENGTH,
   SURNAME_IS_MISSING,
   SURNAME_IS_NOT_CAPITALIZE,
-} from '../../utils/validator';
+} from '../../../utils/validator';
 import OrderingForm from './OrderingForm';
 
 describe('OrderCard component testing', () => {

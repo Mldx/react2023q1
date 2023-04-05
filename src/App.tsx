@@ -1,12 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
-
-import AboutPage from './components/AboutPage/AboutPage';
-import ErrorPage from './components/ErrorPage/ErrorPage';
 import Layout from './components/Layout/Layout';
-import FormPage from './components/FormPage/FormPage';
-import HomePage from './components/HomePage/HomePage';
+import { AboutPage, ErrorPage, FormPage, HomePage } from './components/pages';
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import './FormPage.scss';
-import OrderingForm from '../OrderingForm/OrderingForm';
+import OrderingForm from '../../ui/OrderingForm/OrderingForm';
 
 function FormPage() {
   return (

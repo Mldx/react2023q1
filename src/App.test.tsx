@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
 import App from './App';
 import { describe } from 'vitest';
-import SearchBar from './components/SearchBar/SearchBar';
+import SearchBar from './components/ui/SearchBar/SearchBar';
 import userEvent from '@testing-library/user-event';
 
 describe('LocalStorage testing', () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import './OrderCardContainer.scss';
-import { IOrderingFormData } from '../../../types/types';
+import { IOrderingFormData } from '../../../../types/types';
 import OrderCard from '../OrderCard/OrderCard';
 
 interface IOrderCardContainerProps {

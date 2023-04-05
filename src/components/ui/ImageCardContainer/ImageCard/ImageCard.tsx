@@ -59,5 +59,4 @@ function ImageCard(photo: Basic) {
     </>
   );
 }
-
 export default ImageCard;

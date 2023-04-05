@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
-import HomePage from '../HomePage/HomePage';
+import HomePage from '../../pages/HomePage/HomePage';
 
 describe('API test', () => {
   it('renders image cards when API returns results', async () => {

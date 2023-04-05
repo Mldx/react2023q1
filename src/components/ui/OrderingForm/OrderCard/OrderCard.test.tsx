@@ -2,7 +2,7 @@ import { describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import OrderCard from './OrderCard';
-import { IOrderingFormData } from '../../../types/types';
+import { IOrderingFormData } from '../../../../types/types';
 describe('OrderCard component testing', () => {
   const mockUser: IOrderingFormData = {
     name: 'Anton',
