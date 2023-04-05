@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './HomePage.scss';
 import ImageCardContainer from '../../ui/ImageCardContainer/ImageCardContainer';
 import SearchBar from '../../ui/SearchBar/SearchBar';
+import { useAppContext } from '../../../store/store';
+import LoadingScreen from '../../ui/LoadingScreen/LoadingScreen';
 
 function HomePage() {
-  const initialValue = localStorage.getItem('searchBarValue') || 'cat';
-  const [query, setQuery] = useState(initialValue);
-
+  const { appState } = useAppContext();
   return (
     <div className="home-wrapper">
-      <SearchBar func={setQuery}></SearchBar>
-      <ImageCardContainer currentQuery={query} />
+      <SearchBar></SearchBar>
+      <ImageCardContainer />
+      {appState.status === 'pending' && <LoadingScreen />}
     </div>
   );
 }
