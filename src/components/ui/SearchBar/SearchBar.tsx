@@ -1,31 +1,25 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import './SearchBar.scss';
 import { useAppContext } from '../../../store/store';
 
 function SearchBar() {
   const initialValue = localStorage.getItem('searchBarValue') || '';
   const [value, setValue] = useState(initialValue);
-  const searchBarValueRef = useRef(value);
   const { setAppState } = useAppContext();
-
-  useEffect(() => {
-    return () => {
-      localStorage.setItem('searchBarValue', searchBarValueRef.current);
-    };
-  }, []);
 
   const handleChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     const currentSearchValue = event.target.value;
     setValue(currentSearchValue);
-    searchBarValueRef.current = currentSearchValue;
   };
   const handleEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const currentValue = value.trim();
     if (e.code === 'Enter' || e.code === 'NumpadEnter') {
       setAppState((prevState) => ({
         ...prevState,
-        search: value.trim(),
+        search: currentValue,
       }));
-      setValue(value.trim());
+      setValue(currentValue);
+      localStorage.setItem('searchBarValue', currentValue);
     }
   };
 
