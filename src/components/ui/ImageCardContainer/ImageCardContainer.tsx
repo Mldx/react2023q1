@@ -7,28 +7,30 @@ import { getPhotos } from '../../../api/api';
 function ImageCardContainer() {
   const { appState, setAppState } = useAppContext();
   useEffect(() => {
-    setAppState((prevState) => ({
-      ...prevState,
-      status: 'pending',
-    }));
-    getPhotos(appState.search)
-      .then((result) => {
-        if (result.errors) {
-          throw new Error(result.errors[0]);
-        }
-        setAppState((prevState) => ({
-          ...prevState,
-          cards: result.response?.results,
-          status: 'fulfilled',
-        }));
-      })
-      .catch((err) => {
-        setAppState((prevState) => ({
-          ...prevState,
-          errorMessage: err.message,
-          status: 'reject',
-        }));
-      });
+    if (appState.search) {
+      setAppState((prevState) => ({
+        ...prevState,
+        status: 'pending',
+      }));
+      getPhotos(appState.search)
+        .then((result) => {
+          if (result.errors) {
+            throw new Error(result.errors[0]);
+          }
+          setAppState((prevState) => ({
+            ...prevState,
+            cards: result.response?.results,
+            status: 'fulfilled',
+          }));
+        })
+        .catch((err) => {
+          setAppState((prevState) => ({
+            ...prevState,
+            errorMessage: err.message,
+            status: 'reject',
+          }));
+        });
+    }
   }, [appState.search, setAppState]);
 
   if (appState.status === 'reject') {

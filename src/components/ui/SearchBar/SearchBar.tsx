@@ -23,8 +23,9 @@ function SearchBar() {
     if (e.code === 'Enter' || e.code === 'NumpadEnter') {
       setAppState((prevState) => ({
         ...prevState,
-        search: value,
+        search: value.trim(),
       }));
+      setValue(value.trim());
     }
   };
 
