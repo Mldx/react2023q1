@@ -3,6 +3,7 @@ import './ImageCardContainer.scss';
 import ImageCard from './ImageCard/ImageCard';
 import { useAppContext } from '../../../store/store';
 import { getPhotos } from '../../../api/api';
+import limitErrorMessage from '../../../utils/limitErrorMessage';
 
 function ImageCardContainer() {
   const { appState, setAppState } = useAppContext();
@@ -24,11 +25,7 @@ function ImageCardContainer() {
           }));
         })
         .catch((err) => {
-          const correctMessage =
-            err.message === 'expected JSON response from server.'
-              ? 'The limit of 50 requests/hour has been reached. Please come back when the next hour begins'
-              : err.message;
-
+          const correctMessage = limitErrorMessage(err.message);
           setAppState((prevState) => ({
             ...prevState,
             errorMessage: correctMessage,

@@ -1,17 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './ImageCardPopup.scss';
-import { Basic } from 'unsplash-js/dist/methods/photos/types';
 import LikeIcon from '../../../LikeIcon/LikeIcon';
+import { getPhoto } from '../../../../../api/api';
+import { Full } from 'unsplash-js/dist/methods/photos/types';
+import { useAppContext } from '../../../../../store/store';
+import limitErrorMessage from '../../../../../utils/limitErrorMessage';
 
 interface IImageCardPopupProps {
   func: (e: React.MouseEvent<HTMLElement>) => void;
-  photo: Basic;
+  photoId: string;
 }
 
 function ImageCardPopup(props: IImageCardPopupProps) {
-  const {
-    photo: { urls, user, likes, width, height },
-  } = props;
+  const [photoData, setPhotoData] = useState<Full | null>(null);
+  const { setAppState } = useAppContext();
+
+  useEffect(() => {
+    setAppState((prevState) => ({
+      ...prevState,
+      status: 'pending',
+    }));
+    getPhoto(props.photoId)
+      .then((result) => {
+        result.response && setPhotoData(result.response);
+        setAppState((prevState) => ({
+          ...prevState,
+          status: 'fulfilled',
+        }));
+      })
+      .catch((err) => {
+        const correctMessage = limitErrorMessage(err.message);
+        setAppState((prevState) => ({
+          ...prevState,
+          errorMessage: correctMessage,
+          status: 'reject',
+        }));
+      });
+  }, [props.photoId, setAppState]);
+
+  if (!photoData) {
+    return <></>;
+  }
+
+  const { urls, user, likes, width, height } = photoData;
   return (
     <div className="image-card_popup-container" data-testid="image-card_popup-container">
       <div className="image-card_popup-box">
