@@ -24,9 +24,14 @@ function ImageCardContainer() {
           }));
         })
         .catch((err) => {
+          const correctMessage =
+            err.message === 'expected JSON response from server.'
+              ? 'The limit of 50 requests/hour has been reached. Please come back when the next hour begins'
+              : err.message;
+
           setAppState((prevState) => ({
             ...prevState,
-            errorMessage: err.message,
+            errorMessage: correctMessage,
             status: 'reject',
           }));
         });
@@ -43,6 +48,17 @@ function ImageCardContainer() {
 
   if (appState.status === 'fulfilled' && !appState.cards.length) {
     return <h1>Not found 😞</h1>;
+  }
+
+  if (!localStorage.getItem('searchBarValue')) {
+    return (
+      <>
+        <h1 style={{ fontSize: '2.5rem', margin: '0' }}> Lets go find best images 👀</h1>
+        <div style={{ margin: '0' }} className="image_card-error_message">
+          You and others reviewers have ONLY 50 query / hour
+        </div>
+      </>
+    );
   }
 
   return (
