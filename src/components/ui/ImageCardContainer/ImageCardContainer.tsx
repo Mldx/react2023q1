@@ -1,65 +1,51 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './ImageCardContainer.scss';
-import { createApi } from 'unsplash-js';
-import { ApiResponse } from 'unsplash-js/dist/helpers/response';
-import { Photos } from 'unsplash-js/dist/methods/search/types/response';
 import ImageCard from './ImageCard/ImageCard';
-import LoadingScreen from '../LoadingScreen/LoadingScreen';
+import { useAppContext } from '../../../store/store';
+import { getPhotos } from '../../../api/api';
 
-const api = createApi({
-  accessKey: 'xmx-M-AJ0UbvjxTASHIBeoh8WtViYJw0YiMzsTBbJwE',
-});
-
-function ImageCardContainer(props: { currentQuery: string }) {
-  const [data, setData] = useState<ApiResponse<Photos> | null>(null);
-  const [customErr, setCustomErr] = useState('');
-
+function ImageCardContainer() {
+  const { appState, setAppState } = useAppContext();
   useEffect(() => {
-    setData(null);
-    api.search
-      .getPhotos({
-        query: props.currentQuery,
-        orientation: 'portrait',
-        perPage: 6,
-        page: 1,
-      })
+    setAppState((prevState) => ({
+      ...prevState,
+      status: 'pending',
+    }));
+    getPhotos(appState.search)
       .then((result) => {
-        setData(result);
+        if (result.errors) {
+          throw new Error(result.errors[0]);
+        }
+        setAppState((prevState) => ({
+          ...prevState,
+          cards: result.response?.results,
+          status: 'fulfilled',
+        }));
       })
       .catch((err) => {
-        setCustomErr(err.message);
+        setAppState((prevState) => ({
+          ...prevState,
+          errorMessage: err.message,
+          status: 'reject',
+        }));
       });
-  }, [props.currentQuery]);
+  }, [appState.search, setAppState]);
 
-  if (data === null) {
-    if (customErr) {
-      return (
-        <div className="image_card-error_message">
-          <div>
-            The limit of 50 requests/hour has been reached. Please come back when the next hour
-            begins.
-          </div>
-        </div>
-      );
-    }
-    return <LoadingScreen />;
-  }
-
-  if (data.errors) {
+  if (appState.status === 'reject') {
     return (
       <div className="image_card-error_message">
-        <div>{data.errors?.[0]}</div>
+        <div>{appState.errorMessage}</div>
       </div>
     );
   }
 
-  if (!data.response?.results.length) {
+  if (appState.status === 'fulfilled' && !appState.cards.length) {
     return <h1>Not found 😞</h1>;
   }
 
   return (
     <div className="image-cards-container">
-      {data.response.results.map((photo) => (
+      {appState.cards.map((photo) => (
         <ImageCard {...photo} key={photo.id}></ImageCard>
       ))}
     </div>
