@@ -1,29 +1,25 @@
-import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import './SearchBar.scss';
+import { useAppContext } from '../../../store/store';
 
-interface ISearchBarProps {
-  func?: Dispatch<SetStateAction<string>>;
-}
-
-function SearchBar({ func }: ISearchBarProps) {
-  const initialValue = localStorage.getItem('searchBarValue') || 'cat';
+function SearchBar() {
+  const initialValue = localStorage.getItem('searchBarValue') || '';
   const [value, setValue] = useState(initialValue);
-  const searchBarValueRef = useRef(value);
-
-  useEffect(() => {
-    return () => {
-      localStorage.setItem('searchBarValue', searchBarValueRef.current);
-    };
-  }, []);
+  const { setAppState } = useAppContext();
 
   const handleChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     const currentSearchValue = event.target.value;
     setValue(currentSearchValue);
-    searchBarValueRef.current = currentSearchValue;
   };
   const handleEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (func) {
-      (e.code === 'Enter' || e.code === 'NumpadEnter') && func(value);
+    const currentValue = value.trim();
+    if (e.code === 'Enter' || e.code === 'NumpadEnter') {
+      setAppState((prevState) => ({
+        ...prevState,
+        search: currentValue,
+      }));
+      setValue(currentValue);
+      localStorage.setItem('searchBarValue', currentValue);
     }
   };
 
@@ -35,6 +31,7 @@ function SearchBar({ func }: ISearchBarProps) {
         value={value}
         onChange={handleChangeValue}
         onKeyUp={handleEnterKey}
+        data-testid="search_bar-input"
       />
     </div>
   );

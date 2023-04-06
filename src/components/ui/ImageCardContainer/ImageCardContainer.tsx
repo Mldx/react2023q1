@@ -1,65 +1,67 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './ImageCardContainer.scss';
-import { createApi } from 'unsplash-js';
-import { ApiResponse } from 'unsplash-js/dist/helpers/response';
-import { Photos } from 'unsplash-js/dist/methods/search/types/response';
 import ImageCard from './ImageCard/ImageCard';
-import LoadingScreen from '../LoadingScreen/LoadingScreen';
+import { useAppContext } from '../../../store/store';
+import { getPhotos } from '../../../api/api';
+import limitErrorMessage from '../../../utils/limitErrorMessage';
+import { Status } from '../../../types/types';
 
-const api = createApi({
-  accessKey: 'xmx-M-AJ0UbvjxTASHIBeoh8WtViYJw0YiMzsTBbJwE',
-});
-
-function ImageCardContainer(props: { currentQuery: string }) {
-  const [data, setData] = useState<ApiResponse<Photos> | null>(null);
-  const [customErr, setCustomErr] = useState('');
-
+function ImageCardContainer() {
+  const { appState, setAppState } = useAppContext();
   useEffect(() => {
-    setData(null);
-    api.search
-      .getPhotos({
-        query: props.currentQuery,
-        orientation: 'portrait',
-        perPage: 6,
-        page: 1,
-      })
-      .then((result) => {
-        setData(result);
-      })
-      .catch((err) => {
-        setCustomErr(err.message);
-      });
-  }, [props.currentQuery]);
-
-  if (data === null) {
-    if (customErr) {
-      return (
-        <div className="image_card-error_message">
-          <div>
-            The limit of 50 requests/hour has been reached. Please come back when the next hour
-            begins.
-          </div>
-        </div>
-      );
+    if (appState.search) {
+      setAppState((prevState) => ({
+        ...prevState,
+        status: Status.PENDING,
+      }));
+      getPhotos(appState.search)
+        .then((result) => {
+          if (result.errors) {
+            throw new Error(result.errors[0]);
+          }
+          setAppState((prevState) => ({
+            ...prevState,
+            cards: result.response?.results,
+            status: Status.FULFILLED,
+          }));
+        })
+        .catch((err) => {
+          const correctMessage = limitErrorMessage(err.message);
+          setAppState((prevState) => ({
+            ...prevState,
+            errorMessage: correctMessage,
+            status: Status.REJECT,
+          }));
+        });
     }
-    return <LoadingScreen />;
-  }
+  }, [appState.search, setAppState]);
 
-  if (data.errors) {
+  if (appState.status === Status.REJECT) {
     return (
       <div className="image_card-error_message">
-        <div>{data.errors?.[0]}</div>
+        <div>{appState.errorMessage}</div>
       </div>
     );
   }
 
-  if (!data.response?.results.length) {
+  if (appState.status === Status.FULFILLED && !appState.cards.length) {
     return <h1>Not found 😞</h1>;
+  }
+
+  if (!localStorage.getItem('searchBarValue')) {
+    return (
+      <>
+        <h1 style={{ fontSize: '2.5rem', margin: '0' }}> Lets go find best images 👀</h1>
+        <div style={{ margin: '0', background: '#818130' }} className="image_card-error_message">
+          You and others reviewers have ONLY 50 query / hour
+        </div>
+      </>
+    );
   }
 
   return (
     <div className="image-cards-container">
-      {data.response.results.map((photo) => (
+      {appState.cards.map((photo) => (
         <ImageCard {...photo} key={photo.id}></ImageCard>
       ))}
     </div>

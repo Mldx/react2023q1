@@ -7,3 +7,9 @@ export interface IOrderingFormData {
   gender: string | undefined;
   avatar: File | undefined;
 }
+export enum Status {
+  INITIAL = 'initial',
+  REJECT = 'reject',
+  FULFILLED = 'fulfilled',
+  PENDING = 'pending',
+}

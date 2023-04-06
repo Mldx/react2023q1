@@ -55,8 +55,9 @@ function ImageCard(photo: Basic) {
           </span>
         </div>
       </div>
-      {popupIsActive && <ImageCardPopup func={togglePopup} photo={photo} />}
+      {popupIsActive && <ImageCardPopup func={togglePopup} photoId={photo.id} />}
     </>
   );
 }
+
 export default ImageCard;

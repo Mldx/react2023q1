@@ -7,4 +7,7 @@ export const handlers = [
   rest.get(`${apiUrl}/search/photos`, (req, res, ctx) => {
     return res(ctx.json(catQueryMock));
   }),
+  rest.get(`${apiUrl}/photos/75715CVEJhI`, (req, res, ctx) => {
+    return res(ctx.json(catQueryMock.results[0]));
+  }),
 ];
