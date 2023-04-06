@@ -1,29 +1,3 @@
-export interface IMobileInfo {
-  id: string;
-  model: string;
-  color: string;
-  ram: string;
-  screen: string;
-  cameras: string;
-  price: string;
-  image: string;
-}
-
-export interface INavigateLinkProps {
-  url: string;
-  innerText: string;
-}
-
-export interface IOrderingFormErrors {
-  name?: string | '';
-  surname?: string | '';
-  dateDelivery?: string | '';
-  cityDelivery?: string | '';
-  personalData?: string | '';
-  gender?: string | '';
-  avatar?: string | '';
-}
-
 export interface IOrderingFormData {
   name: string | undefined;
   surname: string | undefined;
@@ -33,9 +7,9 @@ export interface IOrderingFormData {
   gender: string | undefined;
   avatar: File | undefined;
 }
-
-export interface IOrderingFormState {
-  formErrors: IOrderingFormErrors;
-  orderList: IOrderingFormData[];
-  orderCreated: boolean;
+export enum Status {
+  INITIAL = 'initial',
+  REJECT = 'reject',
+  FULFILLED = 'fulfilled',
+  PENDING = 'pending',
 }

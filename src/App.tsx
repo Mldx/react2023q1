@@ -1,16 +1,13 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
-
-import AboutPage from './components/AboutPage/AboutPage';
-import ErrorPage from './components/ErrorPage/ErrorPage';
-import HomePage from './components/HomePage/HomePage';
 import Layout from './components/Layout/Layout';
-import FormPage from './components/FormPage/FormPage';
+import { AboutPage, ErrorPage, FormPage, HomePage } from './components/pages';
+import AppProvider from './store/store';
 
 function App() {
   return (
-    <>
+    <AppProvider>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />}></Route>
@@ -19,7 +16,7 @@ function App() {
         </Route>
         <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
-    </>
+    </AppProvider>
   );
 }
 
