@@ -5,6 +5,7 @@ import { getPhoto } from '../../../../../api/api';
 import { Full } from 'unsplash-js/dist/methods/photos/types';
 import { useAppContext } from '../../../../../store/store';
 import limitErrorMessage from '../../../../../utils/limitErrorMessage';
+import { Status } from '../../../../../types/types';
 
 interface IImageCardPopupProps {
   func: (e: React.MouseEvent<HTMLElement>) => void;
@@ -18,14 +19,14 @@ function ImageCardPopup(props: IImageCardPopupProps) {
   useEffect(() => {
     setAppState((prevState) => ({
       ...prevState,
-      status: 'pending',
+      status: Status.PENDING,
     }));
     getPhoto(props.photoId)
       .then((result) => {
         result.response && setPhotoData(result.response);
         setAppState((prevState) => ({
           ...prevState,
-          status: 'fulfilled',
+          status: Status.FULFILLED,
         }));
       })
       .catch((err) => {
@@ -33,7 +34,7 @@ function ImageCardPopup(props: IImageCardPopupProps) {
         setAppState((prevState) => ({
           ...prevState,
           errorMessage: correctMessage,
-          status: 'reject',
+          status: Status.REJECT,
         }));
       });
   }, [props.photoId, setAppState]);

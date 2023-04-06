@@ -4,6 +4,7 @@ import ImageCardContainer from '../../ui/ImageCardContainer/ImageCardContainer';
 import SearchBar from '../../ui/SearchBar/SearchBar';
 import { useAppContext } from '../../../store/store';
 import LoadingScreen from '../../ui/LoadingScreen/LoadingScreen';
+import { Status } from '../../../types/types';
 
 function HomePage() {
   const { appState } = useAppContext();
@@ -11,7 +12,7 @@ function HomePage() {
     <div className="home-wrapper">
       <SearchBar></SearchBar>
       <ImageCardContainer />
-      {appState.status === 'pending' && <LoadingScreen />}
+      {appState.status === Status.PENDING && <LoadingScreen />}
     </div>
   );
 }

@@ -4,6 +4,7 @@ import ImageCard from './ImageCard/ImageCard';
 import { useAppContext } from '../../../store/store';
 import { getPhotos } from '../../../api/api';
 import limitErrorMessage from '../../../utils/limitErrorMessage';
+import { Status } from '../../../types/types';
 
 function ImageCardContainer() {
   const { appState, setAppState } = useAppContext();
@@ -11,7 +12,7 @@ function ImageCardContainer() {
     if (appState.search) {
       setAppState((prevState) => ({
         ...prevState,
-        status: 'pending',
+        status: Status.PENDING,
       }));
       getPhotos(appState.search)
         .then((result) => {
@@ -21,7 +22,7 @@ function ImageCardContainer() {
           setAppState((prevState) => ({
             ...prevState,
             cards: result.response?.results,
-            status: 'fulfilled',
+            status: Status.FULFILLED,
           }));
         })
         .catch((err) => {
@@ -29,13 +30,13 @@ function ImageCardContainer() {
           setAppState((prevState) => ({
             ...prevState,
             errorMessage: correctMessage,
-            status: 'reject',
+            status: Status.REJECT,
           }));
         });
     }
   }, [appState.search, setAppState]);
 
-  if (appState.status === 'reject') {
+  if (appState.status === Status.REJECT) {
     return (
       <div className="image_card-error_message">
         <div>{appState.errorMessage}</div>
@@ -43,7 +44,7 @@ function ImageCardContainer() {
     );
   }
 
-  if (appState.status === 'fulfilled' && !appState.cards.length) {
+  if (appState.status === Status.FULFILLED && !appState.cards.length) {
     return <h1>Not found 😞</h1>;
   }
 

@@ -1,17 +1,18 @@
 import React, { createContext, ReactNode, useContext, useState } from 'react';
 import { Basic } from 'unsplash-js/dist/methods/photos/types';
+import { Status } from '../types/types';
 
 interface AppState {
   cards: Basic[];
   errorMessage: string;
-  status: 'initial' | 'reject' | 'fulfilled' | 'pending';
+  status: Status;
   search: string;
 }
 
 const initialAppState: AppState = {
   cards: [],
   errorMessage: '',
-  status: 'initial',
+  status: Status.INITIAL,
   search: localStorage.getItem('searchBarValue') || '',
 };
 
@@ -20,7 +21,7 @@ interface AppContextProps {
   setAppState: React.Dispatch<React.SetStateAction<AppState>>;
 }
 
-const AppContext = createContext<AppContextProps>({
+export const AppContext = createContext<AppContextProps>({
   appState: initialAppState,
   setAppState: () => {},
 });
