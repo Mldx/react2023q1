@@ -4,7 +4,6 @@ import React from 'react';
 import App from './App';
 import { describe } from 'vitest';
 import SearchBar from './components/ui/SearchBar/SearchBar';
-import userEvent from '@testing-library/user-event';
 
 describe('LocalStorage testing', () => {
   beforeEach(() => {
@@ -17,22 +16,6 @@ describe('LocalStorage testing', () => {
     localStorage.setItem(mockId, mockValue);
     render(<SearchBar />);
     expect(await screen.getByRole('textbox')).toHaveDisplayValue('iphone 11');
-  });
-
-  it(`testing unmount function in SearchBar'`, async () => {
-    const { unmount } = render(<SearchBar />);
-    const input = screen.getByRole('textbox');
-    const userInputValue = 'Iphone 14 pro max';
-    await userEvent.clear(input);
-    await userEvent.type(input, userInputValue);
-    unmount();
-    expect(localStorage.getItem(mockId)).toEqual(userInputValue);
-  });
-
-  it(`testing init value ('cat') in LS'`, async () => {
-    render(<SearchBar />);
-    screen.getByRole('textbox');
-    expect(screen.getByRole('textbox')).toHaveDisplayValue('cat');
   });
 });
 

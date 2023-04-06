@@ -31,6 +31,7 @@ function SearchBar() {
         value={value}
         onChange={handleChangeValue}
         onKeyUp={handleEnterKey}
+        data-testid="search_bar-input"
       />
     </div>
   );
