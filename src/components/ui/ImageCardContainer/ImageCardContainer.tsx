@@ -52,7 +52,7 @@ function ImageCardContainer() {
     return (
       <>
         <h1 style={{ fontSize: '2.5rem', margin: '0' }}> Lets go find best images 👀</h1>
-        <div style={{ margin: '0' }} className="image_card-error_message">
+        <div style={{ margin: '0', background: '#818130' }} className="image_card-error_message">
           You and others reviewers have ONLY 50 query / hour
         </div>
       </>
