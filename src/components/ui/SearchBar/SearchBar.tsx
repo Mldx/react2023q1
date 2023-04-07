@@ -5,7 +5,7 @@ import { RootState } from '../../../store/storeRedux';
 import { searchBarAction } from '../../../store/searchBarSlice';
 
 function SearchBar() {
-  const queryText = useSelector((state: RootState) => state.searchBar.queryText);
+  const queryText = useSelector((state: RootState) => state.searchBar.searchQuery);
   const dispatch = useDispatch();
   const [value, setValue] = useState(queryText);
 
@@ -14,7 +14,7 @@ function SearchBar() {
   };
   const handleEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const currentValue = value.trim();
-    if (e.code === 'Enter' || e.code === 'NumpadEnter') {
+    if ((e.code === 'Enter' || e.code === 'NumpadEnter') && currentValue !== queryText) {
       dispatch(searchBarAction.setValue({ queryText: currentValue }));
       setValue(currentValue);
     }
