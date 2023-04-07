@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface ISearchBarState {
-  queryText: string;
+  searchQuery: string;
 }
 
 interface ISearchBarAction {
@@ -9,7 +9,7 @@ interface ISearchBarAction {
 }
 
 const initialState: ISearchBarState = {
-  queryText: '',
+  searchQuery: '',
 };
 
 const searchBarSlice = createSlice({
@@ -17,7 +17,7 @@ const searchBarSlice = createSlice({
   initialState,
   reducers: {
     setValue(state, action: PayloadAction<ISearchBarAction>) {
-      state.queryText = action.payload.queryText;
+      state.searchQuery = action.payload.queryText;
     },
   },
 });
