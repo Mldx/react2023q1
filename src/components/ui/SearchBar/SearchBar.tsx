@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
 import './SearchBar.scss';
-import { useAppContext } from '../../../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../store/storeRedux';
+import { searchBarAction } from '../../../store/searchBarSlice';
 
 function SearchBar() {
-  const initialValue = localStorage.getItem('searchBarValue') || '';
-  const [value, setValue] = useState(initialValue);
-  const { setAppState } = useAppContext();
+  const queryText = useSelector((state: RootState) => state.searchBar.queryText);
+  const dispatch = useDispatch();
+  const [value, setValue] = useState(queryText);
 
   const handleChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const currentSearchValue = event.target.value;
-    setValue(currentSearchValue);
+    setValue(event.target.value);
   };
   const handleEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const currentValue = value.trim();
     if (e.code === 'Enter' || e.code === 'NumpadEnter') {
-      setAppState((prevState) => ({
-        ...prevState,
-        search: currentValue,
-      }));
+      dispatch(searchBarAction.setValue({ queryText: currentValue }));
       setValue(currentValue);
-      localStorage.setItem('searchBarValue', currentValue);
     }
   };
 
