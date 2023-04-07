@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { orderCardsReducer } from './orderCardsSlice';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    orderCards: orderCardsReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

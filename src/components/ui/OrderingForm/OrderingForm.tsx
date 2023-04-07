@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './OrderingForm.scss';
-import { IOrderingFormData } from '../../../types/types';
 import ValidationErrorMessage from './ValidationErrorMessage/ValidationErrorMessage';
 import OrderCardContainer from './OrderCardContainer/OrderCardContainer';
 import OrderCreatedWindow from './OrderCreatedWindow/OrderCreatedWindow';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import validator from '../../../utils/validator';
 import getFirstFileFromList from '../../../utils/getFirstFileFromList';
+import { useDispatch } from 'react-redux';
+import { orderCardsActions } from '../../../store/orderCardsSlice';
 
 interface IOrderingForm {
   name: string;
@@ -21,8 +22,7 @@ interface IOrderingForm {
 function OrderingForm() {
   const DELIVERY_CITIES = ['', 'Ankara', 'Minsk', 'Tbilisi', 'Vilnius', 'Warsaw'];
   const GENDERS = ['male', 'female'];
-
-  const [dataOrders, setDataOrders] = useState<IOrderingFormData[]>([]);
+  const dispatch = useDispatch();
   const [orderCreated, setOrderCreated] = useState(false);
   const {
     register,
@@ -32,8 +32,8 @@ function OrderingForm() {
   } = useForm<IOrderingForm>({ mode: 'onSubmit', reValidateMode: 'onSubmit' });
 
   const onSubmit: SubmitHandler<IOrderingForm> = (data) => {
-    const avatarObject = getFirstFileFromList(data.avatar);
-    setDataOrders([...dataOrders, { ...data, avatar: avatarObject }]);
+    const cardInfo = { ...data, avatar: getFirstFileFromList(data.avatar) };
+    dispatch(orderCardsActions.addCard({ card: cardInfo }));
     setOrderCreated(true);
     reset();
   };
@@ -136,7 +136,7 @@ function OrderingForm() {
         </label>
         <button type="submit">Submit</button>
       </form>
-      <OrderCardContainer dataList={dataOrders} />
+      <OrderCardContainer />
       {orderCreated && <OrderCreatedWindow onAnimationEnd={() => setOrderCreated(false)} />}
     </>
   );
