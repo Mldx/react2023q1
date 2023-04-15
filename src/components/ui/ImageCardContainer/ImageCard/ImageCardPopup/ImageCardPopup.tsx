@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './ImageCardPopup.scss';
 import LikeIcon from '../../../LikeIcon/LikeIcon';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../../../../store/storeRedux';
+import { AppDispatch, RootState } from '../../../../../store/store';
 import { getPhotoById } from '../../../../../store/imageCardSlice';
 import { Status } from '../../../../../types/types';
 import LoadingScreen from '../../../LoadingScreen/LoadingScreen';

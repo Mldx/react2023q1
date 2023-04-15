@@ -3,7 +3,7 @@ import './ImageCardContainer.scss';
 import ImageCard from './ImageCard/ImageCard';
 import { Status } from '../../../types/types';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../../store/storeRedux';
+import { AppDispatch, RootState } from '../../../store/store';
 import { getPhotos } from '../../../store/imageCardsSlice';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import ErrorMessageBox from '../ErrorMessageBox/ErrorMessageBox';

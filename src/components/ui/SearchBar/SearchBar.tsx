@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './SearchBar.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../store/storeRedux';
+import { RootState } from '../../../store/store';
 import { searchBarAction } from '../../../store/searchBarSlice';
 
 function SearchBar() {

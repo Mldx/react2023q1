@@ -19,7 +19,7 @@ import {
 } from '../../../utils/validator';
 import OrderingForm from './OrderingForm';
 import { Provider } from 'react-redux';
-import { store } from '../../../store/storeRedux';
+import { store } from '../../../store/store';
 
 describe('OrderCard component testing', () => {
   describe('OrderCard field name', () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import './OrderCardContainer.scss';
 import OrderCard from '../OrderCard/OrderCard';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../store/storeRedux';
+import { RootState } from '../../../../store/store';
 
 function OrderCardContainer() {
   const dataList = useSelector((state: RootState) => state.orderCards.dataList);
