@@ -4,7 +4,6 @@ import React from 'react';
 import FormPage from './FormPage';
 import { Provider } from 'react-redux';
 import { store } from '../../../store/store';
-import OrderingForm from '../../ui/OrderingForm/OrderingForm';
 
 describe('FormPage component testing', () => {
   it(`check fields`, () => {
