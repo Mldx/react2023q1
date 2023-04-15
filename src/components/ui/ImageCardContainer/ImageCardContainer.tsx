@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../store/storeRedux';
 import { getPhotos } from '../../../store/imageCardsSlice';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
+import ErrorMessageBox from '../ErrorMessageBox/ErrorMessageBox';
 
 function ImageCardContainer() {
   const searchQuery = useSelector((state: RootState) => state.searchBar.searchQuery);
@@ -19,14 +20,7 @@ function ImageCardContainer() {
   }, [dispatch, searchQuery]);
 
   if (status === Status.INITIAL) {
-    return (
-      <>
-        <h1 style={{ fontSize: '2.5rem', margin: '0' }}> Lets go find best images 👀</h1>
-        <div style={{ margin: '0', background: '#818130' }} className="image_card-error_message">
-          You and others reviewers have ONLY 50 query / hour
-        </div>
-      </>
-    );
+    return <h1 style={{ fontSize: '2.5rem', margin: '0' }}> Lets go find best images 👀</h1>;
   }
 
   if (status === Status.PENDING) {
@@ -34,11 +28,7 @@ function ImageCardContainer() {
   }
 
   if (status === Status.REJECT) {
-    return (
-      <div className="image_card-error_message">
-        <div>{error?.message}</div>
-      </div>
-    );
+    return <ErrorMessageBox>{error?.message}</ErrorMessageBox>;
   }
 
   if (status === Status.FULFILLED && !cards?.length) {
