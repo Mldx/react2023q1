@@ -2,10 +2,17 @@ import { describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import FormPage from './FormPage';
+import { Provider } from 'react-redux';
+import { store } from '../../../store/storeRedux';
+import OrderingForm from '../../ui/OrderingForm/OrderingForm';
 
 describe('FormPage component testing', () => {
   it(`check fields`, () => {
-    render(<FormPage />);
+    render(
+      <Provider store={store}>
+        <FormPage />
+      </Provider>
+    );
     expect(screen.getByLabelText('Name:')).toBeVisible();
     expect(screen.getByLabelText('Surname:')).toBeVisible();
     expect(screen.getByLabelText('Delivery date:')).toBeVisible();
