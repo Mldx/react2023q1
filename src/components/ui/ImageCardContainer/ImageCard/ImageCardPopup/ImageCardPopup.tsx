@@ -4,6 +4,9 @@ import LikeIcon from '../../../LikeIcon/LikeIcon';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../../../store/storeRedux';
 import { getPhotoById } from '../../../../../store/imageCardSlice';
+import { Status } from '../../../../../types/types';
+import LoadingScreen from '../../../LoadingScreen/LoadingScreen';
+import ErrorMessageBox from '../../../ErrorMessageBox/ErrorMessageBox';
 
 interface IImageCardPopupProps {
   func: (e: React.MouseEvent<HTMLElement>) => void;
@@ -11,12 +14,25 @@ interface IImageCardPopupProps {
 }
 
 function ImageCardPopup(props: IImageCardPopupProps) {
-  const { card } = useSelector((state: RootState) => state.imageCard);
+  const { card, status, error } = useSelector((state: RootState) => state.imageCard);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(getPhotoById(props.photoId));
   }, [dispatch, props.photoId]);
+
+  if (status === Status.PENDING) {
+    return <LoadingScreen />;
+  }
+
+  if (status === Status.REJECT) {
+    return (
+      <div className="image-card_popup-container" data-testid="image-card_popup-container">
+        <ErrorMessageBox>{error?.message}</ErrorMessageBox>
+        <div className="image-card_popup-modal" onClick={(e) => props.func(e)}></div>
+      </div>
+    );
+  }
 
   return (
     <div className="image-card_popup-container" data-testid="image-card_popup-container">
@@ -24,7 +40,6 @@ function ImageCardPopup(props: IImageCardPopupProps) {
         <div className="popup-container_image-box">
           <img src={card?.urls.regular} alt="photo" draggable="false" />
         </div>
-
         <div className="popup-container_info-box">
           <div className="info-box_photographer">
             <a href={card?.user.links.html} target="_blank" rel="noreferrer">
