@@ -1,14 +1,11 @@
 import React from 'react';
 import './OrderCardContainer.scss';
-import { IOrderingFormData } from '../../../../types/types';
 import OrderCard from '../OrderCard/OrderCard';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../store/store';
 
-interface IOrderCardContainerProps {
-  dataList: IOrderingFormData[];
-}
-
-function OrderCardContainer(props: IOrderCardContainerProps) {
-  const { dataList } = props;
+function OrderCardContainer() {
+  const dataList = useSelector((state: RootState) => state.orderCards.dataList);
 
   return dataList.length ? (
     <div className="order-cards-container">

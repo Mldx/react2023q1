@@ -1,70 +1,48 @@
 import React, { useEffect } from 'react';
 import './ImageCardContainer.scss';
 import ImageCard from './ImageCard/ImageCard';
-import { useAppContext } from '../../../store/store';
-import { getPhotos } from '../../../api/api';
-import limitErrorMessage from '../../../utils/limitErrorMessage';
 import { Status } from '../../../types/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../../store/store';
+import { getPhotos } from '../../../store/imageCardsSlice';
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
+import ErrorMessageBox from '../ErrorMessageBox/ErrorMessageBox';
 
 function ImageCardContainer() {
-  const { appState, setAppState } = useAppContext();
-  useEffect(() => {
-    if (appState.search) {
-      setAppState((prevState) => ({
-        ...prevState,
-        status: Status.PENDING,
-      }));
-      getPhotos(appState.search)
-        .then((result) => {
-          if (result.errors) {
-            throw new Error(result.errors[0]);
-          }
-          setAppState((prevState) => ({
-            ...prevState,
-            cards: result.response?.results,
-            status: Status.FULFILLED,
-          }));
-        })
-        .catch((err) => {
-          const correctMessage = limitErrorMessage(err.message);
-          setAppState((prevState) => ({
-            ...prevState,
-            errorMessage: correctMessage,
-            status: Status.REJECT,
-          }));
-        });
-    }
-  }, [appState.search, setAppState]);
+  const searchQuery = useSelector((state: RootState) => state.searchBar.searchQuery);
+  const { status, cards, error } = useSelector((state: RootState) => state.imageCards);
+  const dispatch = useDispatch<AppDispatch>();
 
-  if (appState.status === Status.REJECT) {
-    return (
-      <div className="image_card-error_message">
-        <div>{appState.errorMessage}</div>
-      </div>
-    );
+  useEffect(() => {
+    if (searchQuery) {
+      dispatch(getPhotos(searchQuery));
+    }
+  }, [dispatch, searchQuery]);
+
+  if (status === Status.INITIAL) {
+    return <h1 style={{ fontSize: '2.5rem', margin: '0' }}> Lets go find best images 👀</h1>;
   }
 
-  if (appState.status === Status.FULFILLED && !appState.cards.length) {
+  if (status === Status.PENDING) {
+    return <LoadingScreen />;
+  }
+
+  if (status === Status.REJECT) {
+    return <ErrorMessageBox>{error?.message}</ErrorMessageBox>;
+  }
+
+  if (status === Status.FULFILLED && !cards?.length) {
     return <h1>Not found 😞</h1>;
   }
 
-  if (!localStorage.getItem('searchBarValue')) {
-    return (
-      <>
-        <h1 style={{ fontSize: '2.5rem', margin: '0' }}> Lets go find best images 👀</h1>
-        <div style={{ margin: '0', background: '#818130' }} className="image_card-error_message">
-          You and others reviewers have ONLY 50 query / hour
-        </div>
-      </>
-    );
-  }
-
   return (
-    <div className="image-cards-container">
-      {appState.cards.map((photo) => (
-        <ImageCard {...photo} key={photo.id}></ImageCard>
-      ))}
-    </div>
+    cards && (
+      <div className="image-cards-container">
+        {cards.map((photo) => (
+          <ImageCard {...photo} key={photo.id}></ImageCard>
+        ))}
+      </div>
+    )
   );
 }
 

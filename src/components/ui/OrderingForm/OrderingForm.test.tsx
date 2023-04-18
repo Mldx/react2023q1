@@ -18,11 +18,17 @@ import {
   SURNAME_IS_NOT_CAPITALIZE,
 } from '../../../utils/validator';
 import OrderingForm from './OrderingForm';
+import { Provider } from 'react-redux';
+import { store } from '../../../store/store';
 
 describe('OrderCard component testing', () => {
   describe('OrderCard field name', () => {
     it(`displays error message when name field is empty`, async () => {
-      render(<OrderingForm />);
+      render(
+        <Provider store={store}>
+          <OrderingForm />
+        </Provider>
+      );
       const inputName = screen.getByLabelText('Name:');
       const submit = screen.getByText('Submit');
       const nameValue = '   ';
@@ -31,7 +37,11 @@ describe('OrderCard component testing', () => {
       expect(screen.queryByText(NAME_IS_MISSING)).toBeInTheDocument();
     });
     it(`displays error message when name field contains invalid characters`, async () => {
-      render(<OrderingForm />);
+      render(
+        <Provider store={store}>
+          <OrderingForm />
+        </Provider>
+      );
       const inputName = screen.getByLabelText('Name:');
       const submit = screen.getByText('Submit');
       const nameValue = '!ada';
@@ -40,7 +50,11 @@ describe('OrderCard component testing', () => {
       expect(screen.queryByText(NAME_IS_INCORRECT)).toBeInTheDocument();
     });
     it(`displays error message when name field is not capitalized`, async () => {
-      render(<OrderingForm />);
+      render(
+        <Provider store={store}>
+          <OrderingForm />
+        </Provider>
+      );
       const inputName = screen.getByLabelText('Name:');
       const submit = screen.getByText('Submit');
       const nameValue = 'anton';
@@ -50,7 +64,11 @@ describe('OrderCard component testing', () => {
       expect(screen.queryByText(NAME_IS_NOT_CAPITALIZE)).toBeInTheDocument();
     });
     it(`displays error message when name field length is incorrect`, async () => {
-      render(<OrderingForm />);
+      render(
+        <Provider store={store}>
+          <OrderingForm />
+        </Provider>
+      );
       const inputName = screen.getByLabelText('Name:');
       const submit = screen.getByText('Submit');
       const nameValue = 'Ai';
@@ -59,7 +77,11 @@ describe('OrderCard component testing', () => {
       expect(screen.queryByText(NAME_IS_INCORRECT_LENGTH)).toBeInTheDocument();
     });
     it(`does not display any error messages when name field is valid`, async () => {
-      render(<OrderingForm />);
+      render(
+        <Provider store={store}>
+          <OrderingForm />
+        </Provider>
+      );
       const inputName = screen.getByLabelText('Name:');
       const submit = screen.getByText('Submit');
       const nameValue = 'Anton';
@@ -73,7 +95,11 @@ describe('OrderCard component testing', () => {
   });
   describe('OrderCard field surname', () => {
     it(`displays error message when surname field is empty`, async () => {
-      render(<OrderingForm />);
+      render(
+        <Provider store={store}>
+          <OrderingForm />
+        </Provider>
+      );
       const inputSurname = screen.getByLabelText('Surname:');
       const submit = screen.getByText('Submit');
       const surnameValue = '   ';
@@ -82,7 +108,11 @@ describe('OrderCard component testing', () => {
       expect(screen.queryByText(SURNAME_IS_MISSING)).toBeInTheDocument();
     });
     it(`displays error message when surname field contains invalid characters`, async () => {
-      render(<OrderingForm />);
+      render(
+        <Provider store={store}>
+          <OrderingForm />
+        </Provider>
+      );
       const inputSurname = screen.getByLabelText('Surname:');
       const submit = screen.getByText('Submit');
       const surnameValue = '!ada';
@@ -91,7 +121,11 @@ describe('OrderCard component testing', () => {
       expect(screen.queryByText(SURNAME_IS_INCORRECT)).toBeInTheDocument();
     });
     it(`displays error message when surname field is not capitalized`, async () => {
-      render(<OrderingForm />);
+      render(
+        <Provider store={store}>
+          <OrderingForm />
+        </Provider>
+      );
       const inputSurname = screen.getByLabelText('Surname:');
       const submit = screen.getByText('Submit');
       const surnameValue = 'zaprutski';
@@ -101,7 +135,11 @@ describe('OrderCard component testing', () => {
       expect(screen.queryByText(SURNAME_IS_NOT_CAPITALIZE)).toBeInTheDocument();
     });
     it(`displays error message when surname field length is incorrect`, async () => {
-      render(<OrderingForm />);
+      render(
+        <Provider store={store}>
+          <OrderingForm />
+        </Provider>
+      );
       const inputSurname = screen.getByLabelText('Surname:');
       const submit = screen.getByText('Submit');
       const surnameValue = 'Le';
@@ -110,7 +148,11 @@ describe('OrderCard component testing', () => {
       expect(screen.queryByText(SURNAME_IS_INCORRECT_LENGTH)).toBeInTheDocument();
     });
     it(`does not display any error messages when surname field is valid`, async () => {
-      render(<OrderingForm />);
+      render(
+        <Provider store={store}>
+          <OrderingForm />
+        </Provider>
+      );
       const inputSurname = screen.getByLabelText('Surname:');
       const submit = screen.getByText('Submit');
       const surnameValue = 'Zaprutski';
@@ -123,7 +165,11 @@ describe('OrderCard component testing', () => {
     });
   });
   it(`displays error message when delivery city is not selected`, async () => {
-    render(<OrderingForm />);
+    render(
+      <Provider store={store}>
+        <OrderingForm />
+      </Provider>
+    );
     const selectDeliveryCity = screen.getByLabelText('Delivery city:');
     const submit = screen.getByText('Submit');
     await userEvent.click(selectDeliveryCity);
@@ -131,25 +177,41 @@ describe('OrderCard component testing', () => {
     expect(screen.getByText(DELIVERY_CITY_IS_MISSING)).toBeVisible();
   });
   it(`displays error message when personal data access is not granted`, async () => {
-    render(<OrderingForm />);
+    render(
+      <Provider store={store}>
+        <OrderingForm />
+      </Provider>
+    );
     const submit = screen.getByText('Submit');
     await userEvent.click(submit);
     expect(screen.getByText(PERSONAL_DATA_ACCESSES_IS_MISSING)).toBeVisible();
   });
   it(`displays error message when gender is not selected`, async () => {
-    render(<OrderingForm />);
+    render(
+      <Provider store={store}>
+        <OrderingForm />
+      </Provider>
+    );
     const submit = screen.getByText('Submit');
     await userEvent.click(submit);
     expect(screen.getByText(GENDER_IS_MISSING)).toBeVisible();
   });
   it(`displays error message when avatar file is not uploaded`, async () => {
-    render(<OrderingForm />);
+    render(
+      <Provider store={store}>
+        <OrderingForm />
+      </Provider>
+    );
     const submit = screen.getByText('Submit');
     await userEvent.click(submit);
     expect(screen.getByText(FILE_IS_MISSING)).toBeVisible();
   });
   it('displays error message when delivery date is not entered', async () => {
-    render(<OrderingForm />);
+    render(
+      <Provider store={store}>
+        <OrderingForm />
+      </Provider>
+    );
     const inputDate = screen.getByLabelText('Delivery date:');
     const submit = screen.getByText('Submit');
     const dateValue = '   ';
