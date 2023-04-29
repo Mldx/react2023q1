@@ -3,7 +3,9 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import FormPage from './FormPage';
 import { Provider } from 'react-redux';
-import { store } from '../../../store/store';
+import { setupStore } from '../../../store/store';
+
+const store = setupStore();
 
 describe('FormPage component testing', () => {
   it(`check fields`, () => {

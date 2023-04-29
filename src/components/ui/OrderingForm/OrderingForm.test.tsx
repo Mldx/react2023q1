@@ -19,8 +19,9 @@ import {
 } from '../../../utils/validator';
 import OrderingForm from './OrderingForm';
 import { Provider } from 'react-redux';
-import { store } from '../../../store/store';
+import { setupStore } from '../../../store/store';
 
+const store = setupStore();
 describe('OrderCard component testing', () => {
   describe('OrderCard field name', () => {
     it(`displays error message when name field is empty`, async () => {

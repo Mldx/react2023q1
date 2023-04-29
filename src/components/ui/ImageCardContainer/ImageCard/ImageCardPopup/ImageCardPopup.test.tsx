@@ -3,7 +3,9 @@ import ImageCard from '../ImageCard';
 import { catQueryMock } from '../../../../../mocks/catQueryMock';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { store } from '../../../../../store/store';
+import { setupStore } from '../../../../../store/store';
+
+const store = setupStore();
 
 it('Test image card popup', async () => {
   render(

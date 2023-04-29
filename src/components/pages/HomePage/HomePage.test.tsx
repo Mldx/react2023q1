@@ -2,7 +2,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import HomePage from './HomePage';
 import { Provider } from 'react-redux';
-import { store } from '../../../store/store';
+import { setupStore } from '../../../store/store';
+
+const store = setupStore();
 
 it('Render home page', () => {
   localStorage.removeItem('searchBarValue');
