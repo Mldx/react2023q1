@@ -1,22 +1,15 @@
 import fs from 'node:fs/promises';
 import express from 'express';
+import { ViteDevServer } from 'vite';
 
-// Constants
 const isProduction = process.env.NODE_ENV === 'production';
 const port = process.env.PORT || 5173;
 const base = process.env.BASE || '/';
 
-// Cached production assets
-const templateHtml = isProduction ? await fs.readFile('./dist/client/index.html', 'utf-8') : '';
-const ssrManifest = isProduction
-  ? await fs.readFile('./dist/client/ssr-manifest.json', 'utf-8')
-  : undefined;
-
-// Create http server
 const app = express();
 
 // Add Vite or respective production middlewares
-let vite;
+let vite: ViteDevServer;
 if (!isProduction) {
   const { createServer } = await import('vite');
   vite = await createServer({
@@ -32,42 +25,28 @@ if (!isProduction) {
   app.use(base, sirv('./dist/client', { extensions: [] }));
 }
 
-// Serve HTML
 app.use('*', async (req, res) => {
-  try {
-    const url = req.originalUrl;
+  const url = req.originalUrl;
 
-    let template;
-    let render;
-    if (!isProduction) {
-      // Always read fresh template in development
-      template = await fs.readFile('./index.html', 'utf-8');
-      template = await vite.transformIndexHtml(url, template);
-      render = (await vite.ssrLoadModule('/src/entry-server.tsx')).render;
-    } else {
-      template = templateHtml;
-      render = (await import('./dist/server/entry-server.js')).render;
-    }
-    const [startHTML, endHTML] = template.split('<!--app-->');
+  let template;
+  template = await fs.readFile('./index.html', 'utf-8');
+  template = await vite.transformIndexHtml(url, template);
+  const render = (await vite.ssrLoadModule('/src/entry-server.tsx')).render;
 
-    res.write(startHTML);
-    const stream = render(url, {
-      onShellReady() {
-        stream.pipe(res);
-      },
-      onAllReady() {
-        res.write(endHTML);
-        res.end();
-      },
-    });
-  } catch (e) {
-    vite?.ssrFixStacktrace(e);
-    console.log(e.stack);
-    res.status(500).end(e.stack);
-  }
+  const [startHTML, endHTML] = template.split('<!--app-->');
+
+  res.write(startHTML);
+  const stream = render(url, {
+    onShellReady() {
+      stream.pipe(res);
+    },
+    onAllReady() {
+      res.write(endHTML);
+      res.end();
+    },
+  });
 });
 
-// Start http server
 app.listen(port, () => {
   console.log(`Server started at http://localhost:${port}`);
 });
