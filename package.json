@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "ssr": "vite-node server.ts",
+    "ssr": "ts-node server",
     "lint": "eslint --ext ts,tsx src",
+    "open": "npx cypress open",
     "test": "vitest --coverage",
     "build-ssr": "npm run build:client && npm run build:server",
     "build:client": "vite build --ssrManifest --outDir dist/client",
