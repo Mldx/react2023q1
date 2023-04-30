@@ -4,11 +4,16 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import eslint from 'vite-plugin-eslint';
+import istanbul from 'vite-plugin-istanbul';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    istanbul({
+      cypress: true,
+      requireEnv: false,
+    }),
     {
       ...eslint(),
       apply: 'build',
@@ -27,5 +32,9 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
     css: true,
+  },
+  ssr: { noExternal: ['@reduxjs/toolkit'] },
+  build: {
+    sourcemap: true,
   },
 });

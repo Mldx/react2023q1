@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "useDefineForClassFields": true,
     "lib": [
       "dom",
       "esnext",
       "dom.iterable"
     ],
-    "jsx": "react",
+    "jsx": "react-jsx",
     "module": "esnext",
     "moduleResolution": "node",
     "noImplicitAny": true,
@@ -21,10 +22,21 @@
     "types": [
       "vitest/globals"
     ],
-    "noEmit": true
+    "noEmit": true,
+    "isolatedModules": true,
+  },
+  "ts-node": {
+    "esm": true,
+    "transpileOnly": true,
+    "experimentalSpecifierResolution": "node"
   },
   "include": [
     "./src/**/*",
     "styled.d.ts"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
   ]
 }

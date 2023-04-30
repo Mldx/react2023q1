@@ -1,9 +1,10 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import './App.scss';
 import Layout from './components/Layout/Layout';
 import { AboutPage, ErrorPage, FormPage, HomePage } from './components/pages';
 
+import './App.scss';
+import './index.scss';
 function App() {
   return (
     <Routes>
