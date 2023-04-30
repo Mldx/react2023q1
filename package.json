@@ -6,7 +6,7 @@
   "scripts": {
     "ssr": "ts-node server",
     "lint": "eslint --ext ts,tsx src",
-    "test-unit": "vitest --coverage",
+    "test-unit": "vitest --coverage --watch=false",
     "open": "npx cypress open",
     "cypress": "npm run cypress:clean && npx cypress run --e2e && npx nyc report && npx nyc report --reporter=text-summary",
     "cypress:open": "start-server-and-test ssr http://localhost:5173 open",
